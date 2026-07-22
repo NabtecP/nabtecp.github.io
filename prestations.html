@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prestations VERT 19 - Tonte, taille de haies, débroussaillage, élagage, terrasses en Corrèze. Tarifs clairs et crédit d'impôt 50%.">
+  <title>Prestations — VERT 19</title>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; background: #fff; }
+    :root {
+      --vert: #1A5C38; --vert-clair: #2D7A4F; --vert-pale: #EAF4EE;
+      --orange: #E05C00; --orange-pale: #FFF3E0; --gris: #f7f7f7; --texte-clair: #666;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100; background: var(--vert);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 30px; height: 60px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .nav-logo { color: white; font-size: 1.4em; font-weight: 900; letter-spacing: 2px; text-decoration: none; }
+    .nav-links { display: flex; gap: 25px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9em; font-weight: 500; }
+    .nav-links a:hover { color: white; }
+    .nav-cta { background: var(--orange); color: white !important; padding: 8px 18px; border-radius: 3px; font-weight: 700 !important; }
+
+    .hero { background: linear-gradient(135deg, #0d3d24, #1A5C38); color: white; text-align: center; padding: 60px 20px; }
+    .hero h1 { font-size: 2.2em; font-weight: 900; margin-bottom: 10px; }
+    .hero p { font-size: 1em; opacity: 0.8; }
+
+    .credit-bande {
+      background: var(--vert-clair); color: white; text-align: center;
+      padding: 14px 20px; font-weight: 700; font-size: 0.95em;
+    }
+
+    .page { max-width: 900px; margin: 50px auto; padding: 0 20px; }
+
+    .prestation-bloc { margin-bottom: 50px; }
+    .prestation-titre {
+      display: flex; align-items: center; gap: 12px;
+      border-bottom: 3px solid var(--orange);
+      padding-bottom: 12px; margin-bottom: 20px;
+    }
+    .prestation-titre h2 { font-size: 1.5em; font-weight: 900; color: var(--vert); }
+    .prestation-titre .emoji { font-size: 1.8em; }
+
+    .prestation-contenu { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .tarifs-liste { background: var(--gris); border-radius: 6px; padding: 20px; }
+    .tarifs-liste h3 { font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; color: var(--texte-clair); margin-bottom: 14px; }
+    .tarif-ligne { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e8e8e8; font-size: 0.9em; }
+    .tarif-ligne:last-child { border-bottom: none; }
+    .tarif-ligne .prix { font-weight: 700; color: var(--vert); }
+
+    .prestation-info h3 { font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; color: var(--texte-clair); margin-bottom: 14px; }
+    .prestation-info ul { list-style: none; }
+    .prestation-info ul li { padding: 6px 0; font-size: 0.9em; color: var(--texte-clair); display: flex; gap: 8px; }
+    .prestation-info ul li::before { content: "✓"; color: var(--vert); font-weight: 700; }
+
+    .bandeau-feuilles { background: var(--vert-clair); color: white; text-align: center; padding: 16px 20px; font-weight: 700; margin: 20px 0; }
+
+    .bricolage-carte {
+      background: var(--orange-pale); border: 1px solid #ffcc99;
+      border-left: 4px solid var(--orange); border-radius: 4px;
+      padding: 20px 24px; margin-bottom: 40px;
+    }
+    .bricolage-carte h2 { color: var(--orange); margin-bottom: 10px; font-size: 1.1em; }
+    .bricolage-carte ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .bricolage-carte ul li { background: white; border: 1px solid #ffcc99; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; color: var(--texte-clair); }
+
+    .cta-bas { background: var(--vert); color: white; text-align: center; padding: 40px 20px; border-radius: 6px; margin-bottom: 50px; }
+    .cta-bas h2 { font-size: 1.5em; margin-bottom: 10px; }
+    .cta-bas p { opacity: 0.8; margin-bottom: 20px; }
+    .btn-appel { display: inline-block; background: var(--orange); color: white; padding: 14px 30px; font-size: 1.1em; font-weight: 700; text-decoration: none; border-radius: 4px; }
+
+    footer { background: #0d1f14; color: rgba(255,255,255,0.5); text-align: center; padding: 24px 20px; font-size: 0.82em; line-height: 1.8; }
+    footer strong { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 15px; }
+      .nav-links { display: none; }
+      .prestation-contenu { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">VERT 19</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="prestations.html">Prestations</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li><a href="contact.html" class="nav-cta">📞 Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <h1>Nos prestations</h1>
+  <p>Tarifs clairs · Devis gratuit · 50% crédit d'impôt sur toutes les prestations</p>
+</div>
+
+<div class="credit-bande">💡 Toutes nos prestations sont éligibles au crédit d'impôt de 50% — vous ne payez que la moitié !</div>
+
+<div class="page">
+
+  <!-- HAIES -->
+  <div class="prestation-bloc">
+    <div class="prestation-titre"><span class="emoji">🌿</span><h2>Taille de haies</h2></div>
+    <div class="prestation-contenu">
+      <div class="tarifs-liste">
+        <h3>Tarifs</h3>
+        <div class="tarif-ligne"><span>Moins d'1,5 m</span><span class="prix">à partir de 5 € / ml</span></div>
+        <div class="tarif-ligne"><span>Entre 1,5 m et 3 m</span><span class="prix">à partir de 8 € / ml</span></div>
+        <div class="tarif-ligne"><span>Entre 3 m et 4 m</span><span class="prix">à partir de 11 € / ml</span></div>
+      </div>
+      <div class="prestation-info">
+        <h3>Ce qui est inclus</h3>
+        <ul>
+          <li>Taille des deux côtés et du dessus</li>
+          <li>Finition soignée au sécateur si nécessaire</li>
+          <li>Soufflage des déchets sur place</li>
+          <li>Évacuation des déchets sur devis</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DÉBROUSSAILLAGE -->
+  <div class="prestation-bloc">
+    <div class="prestation-titre"><span class="emoji">🌾</span><h2>Débroussaillage</h2></div>
+    <div class="prestation-contenu">
+      <div class="tarifs-liste">
+        <h3>Tarifs</h3>
+        <div class="tarif-ligne"><span>Pente, roncier, arbustes</span><span class="prix">à partir de 0,90 € / m²</span></div>
+        <div class="tarif-ligne"><span>Herbe, fougère</span><span class="prix">à partir de 0,50 € / m²</span></div>
+        <div class="tarif-ligne"><span>Avec évacuation</span><span class="prix">à partir de 0,70 € / m²</span></div>
+      </div>
+      <div class="prestation-info">
+        <h3>Ce qui est inclus</h3>
+        <ul>
+          <li>Débroussaillage complet de la zone</li>
+          <li>Ramassage des déchets sur demande</li>
+          <li>Intervention sur terrains difficiles</li>
+          <li>Zones en pente acceptées</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TONTE -->
+  <div class="prestation-bloc">
+    <div class="prestation-titre"><span class="emoji">✂️</span><h2>Tonte de pelouse</h2></div>
+    <div class="prestation-contenu">
+      <div class="tarifs-liste">
+        <h3>Tarifs</h3>
+        <div class="tarif-ligne"><span>Pelouse &lt; 250 m²</span><span class="prix">à partir de 0,40 € / m²</span></div>
+        <div class="tarif-ligne"><span>250 m² – 1 000 m²</span><span class="prix">à partir de 0,30 € / m²</span></div>
+        <div class="tarif-ligne"><span>Plus de 1 000 m²</span><span class="prix">Sur devis</span></div>
+      </div>
+      <div class="prestation-info">
+        <h3>Ce qui est inclus</h3>
+        <ul>
+          <li>Tonte à la hauteur souhaitée</li>
+          <li>Contours et bordures soignés</li>
+          <li>Soufflage des tontes sur les allées</li>
+          <li>Forfait entretien régulier disponible</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARBRES -->
+  <div class="prestation-bloc">
+    <div class="prestation-titre"><span class="emoji">🌳</span><h2>Taille d'arbres</h2></div>
+    <div class="prestation-contenu">
+      <div class="tarifs-liste">
+        <h3>Tarifs</h3>
+        <div class="tarif-ligne"><span>Arbre de 0 à 5 m</span><span class="prix">à partir de 100 €</span></div>
+        <div class="tarif-ligne"><span>Arbre de 5 à 12 m</span><span class="prix">à partir de 200 €</span></div>
+        <div class="tarif-ligne"><span>Au-delà de 12 m</span><span class="prix">Sur devis</span></div>
+      </div>
+      <div class="prestation-info">
+        <h3>Ce qui est inclus</h3>
+        <ul>
+          <li>Taille de forme ou d'entretien</li>
+          <li>Suppression des branches mortes</li>
+          <li>Évacuation des branches sur devis</li>
+          <li>Respect de la forme naturelle</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERRASSES -->
+  <div class="prestation-bloc">
+    <div class="prestation-titre"><span class="emoji">🧹</span><h2>Nettoyage de terrasses</h2></div>
+    <div class="prestation-contenu">
+      <div class="tarifs-liste">
+        <h3>Tarifs</h3>
+        <div class="tarif-ligne"><span>Nettoyage haute pression</span><span class="prix">à partir de 4 € / m²</span></div>
+        <div class="tarif-ligne"><span>Forfait &lt; 10 m²</span><span class="prix">50 €</span></div>
+      </div>
+      <div class="prestation-info">
+        <h3>Ce qui est inclus</h3>
+        <ul>
+          <li>Nettoyage haute pression</li>
+          <li>Démoussage des dalles</li>
+          <li>Nettoyage des joints</li>
+          <li>Évacuation des eaux sales</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEUILLES -->
+  <div class="bandeau-feuilles">🍂 Ramassage de feuilles — Sur devis selon surface et quantité</div>
+
+  <!-- FORFAIT -->
+  <div class="prestation-bloc" style="margin-top:30px;">
+    <div class="prestation-titre"><span class="emoji">📋</span><h2>Forfait entretien annuel</h2></div>
+    <div class="prestation-contenu">
+      <div class="tarifs-liste">
+        <h3>Tarifs</h3>
+        <div class="tarif-ligne"><span>Tonte + haies + nettoyage</span><span class="prix">Sur devis</span></div>
+        <div class="tarif-ligne"><span>Fréquence sur mesure</span><span class="prix">Tarif préférentiel</span></div>
+      </div>
+      <div class="prestation-info">
+        <h3>Les avantages</h3>
+        <ul>
+          <li>Tarif réduit par rapport aux interventions ponctuelles</li>
+          <li>Planning d'intervention régulier</li>
+          <li>Priorité sur les créneaux disponibles</li>
+          <li>Suivi personnalisé de votre jardin</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRICOLAGE -->
+  <div class="bricolage-carte">
+    <h2>🔧 Petits travaux à domicile</h2>
+    <p>Également disponible pour vos petits travaux — éligibles au crédit d'impôt SAP</p>
+    <ul>
+      <li>Montage de meubles</li>
+      <li>Pose d'étagères</li>
+      <li>Fixations murales</li>
+      <li>Réparations courantes</li>
+      <li>Pose de gaine enterrée</li>
+      <li>Nettoyage de gouttières</li>
+      <li>Sur devis</li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-bas">
+    <h2>Devis gratuit — je me déplace sans engagement</h2>
+    <p>Appelez-moi pour obtenir un tarif précis adapté à votre terrain</p>
+    <a href="tel:0641563230" class="btn-appel">📞 06 41 56 32 30</a>
+  </div>
+
+</div>
+
+<footer>
+  <strong>Florent PORTEFAIX — VERT 19</strong><br>
+  Entretien des espaces verts &amp; Jardinage · Corrèze<br>
+  📸 @vert19100 · vert19100@gmail.com
+</footer>
+
+</body>
+</html>
