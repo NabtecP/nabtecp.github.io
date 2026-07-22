@@ -4,349 +4,234 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="VERT 19 - Entretien des espaces verts et jardinage en Corrèze. Tonte, taille de haies, débroussaillage autour de Brive. Devis gratuit. Crédit d'impôt 50%.">
-  <title>VERT 19 — Votre jardinier en Corrèze</title>
+  <title>VERT 19 — Jardinier en Corrèze</title>
   <style>
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; background: #fff; }
-
-    /* ===== VARIABLES ===== */
+    html { scroll-behavior:smooth; }
+    body { font-family:'Segoe UI',Arial,sans-serif; color:#1a1a1a; background:#fff; line-height:1.6; }
     :root {
-      --vert: #1A5C38;
-      --vert-clair: #2D7A4F;
-      --vert-pale: #EAF4EE;
-      --orange: #E05C00;
-      --orange-pale: #FFF3E0;
-      --blanc: #ffffff;
-      --gris: #f7f7f7;
-      --texte: #2a2a2a;
-      --texte-clair: #666;
+      --vert:#1A5C38; --vert2:#2D7A4F; --vert-pale:#EAF4EE;
+      --orange:#E05C00; --orange-pale:#FFF3E0;
+      --gris:#F8F8F8; --gris2:#efefef; --texte:#2a2a2a; --texte-clair:#666;
+      --radius:6px; --shadow:0 4px 20px rgba(0,0,0,0.08);
     }
 
-    /* ===== NAV ===== */
+    /* ── NAV ── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--vert);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 30px;
-      height: 60px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      position:sticky; top:0; z-index:999;
+      background:var(--vert);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 40px; height:64px;
+      box-shadow:0 2px 12px rgba(0,0,0,0.25);
     }
-    .nav-logo { color: white; font-size: 1.4em; font-weight: 900; letter-spacing: 2px; }
-    .nav-links { display: flex; gap: 25px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9em; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: white; }
-    .nav-cta {
-      background: var(--orange);
-      color: white !important;
-      padding: 8px 18px;
-      border-radius: 3px;
-      font-weight: 700 !important;
+    .nav-logo {
+      color:#fff; font-size:1.5em; font-weight:900;
+      letter-spacing:3px; text-decoration:none;
+      display:flex; align-items:center; gap:10px;
     }
+    .nav-logo-dot { width:10px; height:10px; background:var(--orange); border-radius:50%; }
+    .nav-links { display:flex; align-items:center; gap:8px; list-style:none; }
+    .nav-links a {
+      color:rgba(255,255,255,0.82); text-decoration:none;
+      font-size:0.88em; font-weight:500; padding:6px 14px;
+      border-radius:4px; transition:all 0.2s;
+    }
+    .nav-links a:hover { color:#fff; background:rgba(255,255,255,0.1); }
+    .nav-links .nav-cta {
+      background:var(--orange); color:#fff !important;
+      font-weight:700; padding:8px 20px;
+    }
+    .nav-links .nav-cta:hover { background:#c44f00; }
+    .nav-mobile { display:none; }
 
-    /* ===== HERO ===== */
+    /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, #0d3d24 0%, #1A5C38 50%, #2D7A4F 100%);
-      color: white;
-      padding: 80px 20px 60px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      background:linear-gradient(150deg, #082618 0%, #0f3d22 40%, #1A5C38 100%);
+      color:#fff; min-height:88vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:80px 40px; text-align:center; position:relative; overflow:hidden;
     }
     .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 60%);
-      pointer-events: none;
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse 80% 60% at 50% 40%, rgba(45,122,79,0.3) 0%, transparent 70%);
     }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      color: rgba(255,255,255,0.9);
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.8em;
-      margin-bottom: 25px;
-      letter-spacing: 0.5px;
+    .hero-inner { position:relative; max-width:680px; }
+    .hero-eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
+      color:rgba(255,255,255,0.88); padding:6px 18px; border-radius:20px;
+      font-size:0.8em; letter-spacing:0.5px; margin-bottom:28px;
     }
     .hero h1 {
-      font-size: clamp(2em, 5vw, 3.5em);
-      font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 18px;
-      letter-spacing: -0.5px;
+      font-size:clamp(2.2em,5vw,3.8em); font-weight:900;
+      line-height:1.1; letter-spacing:-1px; margin-bottom:20px;
     }
-    .hero h1 em { color: #a8e6c1; font-style: normal; }
-    .hero p {
-      font-size: 1.15em;
-      opacity: 0.85;
-      max-width: 520px;
-      margin: 0 auto 30px;
-      line-height: 1.6;
+    .hero h1 em { color:#7ed4a0; font-style:normal; }
+    .hero-sub {
+      font-size:1.1em; opacity:0.78; max-width:480px;
+      margin:0 auto 36px; line-height:1.7;
     }
-    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--orange);
-      color: white;
-      padding: 16px 32px;
-      font-size: 1.05em;
-      font-weight: 700;
-      text-decoration: none;
-      border-radius: 4px;
-      transition: background 0.2s, transform 0.1s;
-      display: inline-block;
+    .hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .btn { display:inline-block; padding:15px 32px; font-size:1em; font-weight:700; text-decoration:none; border-radius:var(--radius); transition:all 0.2s; }
+    .btn-orange { background:var(--orange); color:#fff; }
+    .btn-orange:hover { background:#c44f00; transform:translateY(-2px); box-shadow:0 6px 20px rgba(224,92,0,0.4); }
+    .btn-outline { background:transparent; color:#fff; border:2px solid rgba(255,255,255,0.45); }
+    .btn-outline:hover { border-color:#fff; transform:translateY(-2px); }
+    .hero-badge {
+      position:absolute; top:28px; right:28px;
+      background:var(--orange); color:#fff;
+      width:88px; height:88px; border-radius:50%;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      font-weight:900; text-align:center; line-height:1.2;
+      box-shadow:0 6px 20px rgba(224,92,0,0.5);
     }
-    .btn-primary:hover { background: #c44f00; transform: translateY(-1px); }
-    .btn-secondary {
-      background: transparent;
-      color: white;
-      padding: 16px 32px;
-      font-size: 1.05em;
-      font-weight: 600;
-      text-decoration: none;
-      border: 2px solid rgba(255,255,255,0.5);
-      border-radius: 4px;
-      transition: border-color 0.2s, transform 0.1s;
-      display: inline-block;
-    }
-    .btn-secondary:hover { border-color: white; transform: translateY(-1px); }
+    .hero-badge .big { font-size:1.9em; }
+    .hero-badge .small { font-size:0.6em; opacity:0.9; }
 
-    /* Badge 50% flottant */
-    .badge-50 {
-      position: absolute;
-      top: 25px;
-      right: 30px;
-      background: var(--orange);
-      color: white;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      line-height: 1.1;
-      text-align: center;
-      font-size: 0.75em;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .badge-50 span { font-size: 1.9em; }
-
-    /* ===== BANDEAU CONFIANCE ===== */
+    /* ── CONFIANCE ── */
     .confiance {
-      background: var(--vert-pale);
-      border-bottom: 2px solid #c8e6d4;
-      padding: 16px 20px;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
+      background:#fff; border-bottom:1px solid #e8e8e8;
+      display:flex; justify-content:center; flex-wrap:wrap; gap:0;
     }
     .confiance-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88em;
-      color: var(--vert);
-      font-weight: 600;
+      display:flex; align-items:center; gap:10px;
+      padding:18px 28px; font-size:0.88em; font-weight:600; color:var(--vert);
+      border-right:1px solid #e8e8e8;
     }
-    .confiance-item .icon { font-size: 1.2em; }
+    .confiance-item:last-child { border-right:none; }
+    .confiance-item .ic { font-size:1.3em; }
 
-    /* ===== SECTION CRÉDIT IMPÔT ===== */
-    .credit-section {
-      background: var(--vert);
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
+    /* ── CRÉDIT ── */
+    .credit-bande {
+      background:var(--vert); color:#fff;
+      padding:22px 20px; text-align:center;
     }
-    .credit-section p { font-size: 1.05em; opacity: 0.9; max-width: 600px; margin: 0 auto 10px; }
+    .credit-bande p { font-size:0.95em; opacity:0.85; margin-bottom:8px; }
     .credit-exemple {
-      display: inline-block;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 10px 24px;
-      border-radius: 4px;
-      font-weight: 700;
-      font-size: 1.05em;
-      margin-top: 10px;
+      display:inline-block;
+      background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
+      padding:9px 22px; border-radius:4px; font-weight:700; font-size:1em;
     }
-    .urssaf-badge {
-      display: inline-block;
-      background: #1565C0;
-      color: white;
-      font-size: 0.72em;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 3px;
-      margin-top: 12px;
-      letter-spacing: 0.5px;
+    .urssaf-pill {
+      display:inline-block; background:#1565C0; color:#fff;
+      font-size:0.68em; font-weight:700; padding:3px 12px; border-radius:12px;
+      letter-spacing:0.5px; margin-top:10px;
     }
 
-    /* ===== PRESTATIONS ===== */
-    .section { padding: 60px 20px; max-width: 1050px; margin: 0 auto; }
-    .section-titre {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .section-titre h2 {
-      font-size: 2em;
-      font-weight: 900;
-      color: var(--vert);
-      margin-bottom: 8px;
-    }
-    .section-titre p { color: var(--texte-clair); font-size: 1em; }
-    .section-titre .ligne {
-      width: 50px;
-      height: 4px;
-      background: var(--orange);
-      margin: 12px auto 0;
-      border-radius: 2px;
-    }
+    /* ── SECTIONS ── */
+    .section { padding:70px 20px; }
+    .section-inner { max-width:1060px; margin:0 auto; }
+    .section-header { text-align:center; margin-bottom:48px; }
+    .section-header h2 { font-size:2em; font-weight:900; color:var(--vert); margin-bottom:8px; }
+    .section-header p { color:var(--texte-clair); font-size:1em; }
+    .ligne-orange { width:48px; height:4px; background:var(--orange); margin:14px auto 0; border-radius:2px; }
 
-    .grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; }
+    /* ── CARTES PRESTATIONS ── */
+    .grille-3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
     .carte {
-      background: var(--gris);
-      border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid #e8e8e8;
-      transition: transform 0.2s, box-shadow 0.2s;
+      background:#fff; border:1px solid #e8e8e8; border-radius:var(--radius);
+      overflow:hidden; transition:transform 0.2s,box-shadow 0.2s;
+      box-shadow:var(--shadow);
     }
-    .carte:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+    .carte:hover { transform:translateY(-4px); box-shadow:0 12px 35px rgba(0,0,0,0.12); }
     .carte-header {
-      background: var(--orange);
-      color: white;
-      padding: 13px 18px;
-      font-weight: 700;
-      font-size: 1em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      background:var(--orange); color:#fff;
+      padding:14px 20px; font-weight:700; font-size:0.98em;
+      display:flex; align-items:center; gap:10px;
     }
-    .carte-body { padding: 18px; }
-    .ligne-tarif {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 7px 0;
-      border-bottom: 1px solid #e5e5e5;
-      font-size: 0.9em;
+    .carte-body { padding:20px; }
+    .tarif-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:9px 0; border-bottom:1px solid #f0f0f0; font-size:0.9em;
     }
-    .ligne-tarif:last-child { border-bottom: none; }
-    .ligne-tarif .label { color: var(--texte-clair); }
-    .ligne-tarif .prix { font-weight: 700; color: var(--vert); }
+    .tarif-row:last-child { border-bottom:none; }
+    .tarif-row .label { color:var(--texte-clair); }
+    .tarif-row .prix { font-weight:700; color:var(--vert); }
+    .carte-link {
+      display:block; text-align:center; padding:12px;
+      background:var(--vert-pale); color:var(--vert);
+      font-weight:700; font-size:0.85em; text-decoration:none;
+      transition:background 0.2s;
+    }
+    .carte-link:hover { background:#d0eada; }
 
-    /* ===== BANDEAU FEUILLES ===== */
-    .bandeau-feuilles {
-      background: var(--vert-clair);
-      color: white;
-      text-align: center;
-      padding: 16px 20px;
-      font-weight: 700;
-      font-size: 1em;
+    /* ── BANDEAU ── */
+    .bandeau { background:var(--vert2); color:#fff; text-align:center; padding:16px 20px; font-weight:700; }
+    .bandeau-bricolage {
+      max-width:1060px; margin:24px auto 0;
+      background:var(--orange-pale); border:1px solid #ffc89a;
+      border-left:5px solid var(--orange); border-radius:var(--radius);
+      padding:16px 24px; font-size:0.93em;
     }
 
-    /* ===== BRICOLAGE ===== */
-    .bricolage-section {
-      max-width: 1050px;
-      margin: 25px auto;
-      padding: 0 20px;
+    /* ── TEMOIGNAGES ── */
+    .section-temoignages { background:var(--gris); }
+    .temo-grille { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
+    .temo {
+      background:#fff; border-radius:var(--radius);
+      padding:26px; border:1px solid #e8e8e8;
+      box-shadow:var(--shadow); position:relative;
     }
-    .bricolage-carte {
-      background: var(--orange-pale);
-      border: 1px solid #ffcc99;
-      border-left: 4px solid var(--orange);
-      border-radius: 4px;
-      padding: 16px 22px;
-      font-size: 0.95em;
-      color: var(--texte);
+    .temo::before {
+      content:'"'; position:absolute; top:14px; right:20px;
+      font-size:4em; color:var(--vert-pale); font-family:Georgia,serif; line-height:1;
+    }
+    .etoiles { color:#f5b700; font-size:1em; margin-bottom:14px; letter-spacing:2px; }
+    .temo-texte { font-size:0.9em; color:var(--texte-clair); line-height:1.7; font-style:italic; margin-bottom:16px; }
+    .temo-auteur { font-weight:700; font-size:0.88em; color:var(--vert); }
+    .temo-lieu { font-size:0.8em; color:#bbb; }
+
+    /* ── ZONE ── */
+    .zone-bande {
+      background:var(--vert-pale); border-top:2px solid #c8e6d4; border-bottom:2px solid #c8e6d4;
+      padding:22px 20px; text-align:center;
+    }
+    .zone-bande strong { display:block; color:var(--vert); font-size:1em; margin-bottom:6px; }
+    .zone-bande p { color:var(--texte-clair); font-size:0.9em; }
+
+    /* ── SAP ── */
+    .sap-inner {
+      background:var(--vert-pale); border:1px solid #c8e6d4;
+      border-left:5px solid var(--vert); border-radius:var(--radius);
+      padding:20px 26px; font-size:0.87em; color:var(--texte-clair); line-height:1.8;
     }
 
-    /* ===== TÉMOIGNAGES ===== */
-    .temoignages { background: var(--gris); padding: 60px 20px; }
-    .temoignages-inner { max-width: 1050px; margin: 0 auto; }
-    .temoignages-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
-    .temoignage {
-      background: white;
-      border-radius: 6px;
-      padding: 24px;
-      border: 1px solid #e8e8e8;
-      position: relative;
-    }
-    .etoiles { color: #f5b700; font-size: 1.1em; margin-bottom: 12px; }
-    .temoignage-texte { font-size: 0.92em; color: var(--texte-clair); line-height: 1.65; font-style: italic; margin-bottom: 14px; }
-    .temoignage-auteur { font-weight: 700; font-size: 0.88em; color: var(--vert); }
-    .temoignage-lieu { font-size: 0.8em; color: #aaa; }
-
-    /* ===== ZONE ===== */
-    .zone-section {
-      background: var(--vert-pale);
-      border-top: 2px solid #c8e6d4;
-      border-bottom: 2px solid #c8e6d4;
-      padding: 22px 20px;
-      text-align: center;
-    }
-    .zone-section strong { display: block; color: var(--vert); font-size: 1em; margin-bottom: 6px; }
-    .zone-section p { color: var(--texte-clair); font-size: 0.92em; }
-
-    /* ===== SAP ===== */
-    .sap-section {
-      max-width: 1050px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .sap-carte {
-      background: var(--vert-pale);
-      border: 1px solid #c8e6d4;
-      border-left: 4px solid var(--vert);
-      border-radius: 4px;
-      padding: 20px 24px;
-      font-size: 0.88em;
-      color: var(--texte-clair);
-      line-height: 1.8;
-    }
-
-    /* ===== CTA BAS ===== */
+    /* ── CTA BAS ── */
     .cta-section {
-      background: linear-gradient(135deg, #0d3d24, #1A5C38);
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
+      background:linear-gradient(135deg,#082618,#1A5C38);
+      color:#fff; text-align:center; padding:70px 20px;
     }
-    .cta-section h2 { font-size: 2em; font-weight: 900; margin-bottom: 10px; }
-    .cta-section p { font-size: 1em; opacity: 0.8; margin-bottom: 30px; }
-    .cta-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .cta-section h2 { font-size:2em; font-weight:900; margin-bottom:10px; }
+    .cta-section p { opacity:0.78; margin-bottom:30px; font-size:1em; }
+    .cta-btns { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+    .btn-outline-white {
+      display:inline-block; background:transparent; color:#fff;
+      padding:15px 32px; font-size:1em; font-weight:700; text-decoration:none;
+      border:2px solid rgba(255,255,255,0.45); border-radius:var(--radius);
+      transition:all 0.2s;
+    }
+    .btn-outline-white:hover { border-color:#fff; }
 
-    /* ===== FOOTER ===== */
+    /* ── FOOTER ── */
     footer {
-      background: #0d1f14;
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 24px 20px;
-      font-size: 0.82em;
-      line-height: 1.8;
+      background:#0a1f10; color:rgba(255,255,255,0.45);
+      padding:36px 20px; text-align:center; font-size:0.82em; line-height:2;
     }
-    footer strong { color: rgba(255,255,255,0.8); }
+    footer strong { color:rgba(255,255,255,0.8); font-size:1.05em; }
+    .footer-links { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:12px; }
+    .footer-links a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.9em; }
+    .footer-links a:hover { color:rgba(255,255,255,0.8); }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 640px) {
-      nav { padding: 0 15px; }
-      .nav-links { display: none; }
-      .badge-50 { width: 65px; height: 65px; top: 15px; right: 15px; }
-      .badge-50 span { font-size: 1.5em; }
-      .confiance { gap: 15px; }
-      .hero { padding: 60px 15px 50px; }
+    /* ── RESPONSIVE ── */
+    @media (max-width:700px) {
+      nav { padding:0 16px; }
+      .nav-links { display:none; }
+      .nav-mobile { display:block; }
+      .hero { min-height:auto; padding:70px 20px 50px; }
+      .hero-badge { width:70px; height:70px; top:16px; right:16px; }
+      .hero-badge .big { font-size:1.5em; }
+      .confiance { justify-content:flex-start; overflow-x:auto; flex-wrap:nowrap; }
+      .confiance-item { white-space:nowrap; }
     }
   </style>
 </head>
@@ -354,176 +239,200 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">VERT 19</div>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    VERT 19
+  </a>
   <ul class="nav-links">
-    <li><a href="#prestations">Prestations</a></li>
-    <li><a href="#temoignages">Avis clients</a></li>
-    <li><a href="#zone">Zone</a></li>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="prestations.html">Prestations</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li><a href="contact.html">Contact</a></li>
     <li><a href="tel:0641563230" class="nav-cta">📞 Devis gratuit</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="badge-50"><span>50%</span>CRÉDIT<br>D'IMPÔTS</div>
-  <div class="hero-badge">📍 Corrèze · Artisan local déclaré SAP</div>
-  <h1>Votre jardin,<br><em>entre de bonnes mains</em></h1>
-  <p>Entretien des espaces verts, tonte, taille de haies, débroussaillage et petits travaux — autour de Brive et en Corrèze.</p>
-  <div class="hero-btns">
-    <a href="tel:0641563230" class="btn-primary">📞 06 41 56 32 30</a>
-    <a href="#prestations" class="btn-secondary">Voir nos tarifs</a>
+  <div class="hero-badge">
+    <span class="big">50%</span>
+    <span class="small">CRÉDIT<br>D'IMPÔTS</span>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">📍 Corrèze · Artisan local déclaré SAP</div>
+    <h1>Votre jardin,<br><em>entre de bonnes mains</em></h1>
+    <p class="hero-sub">Tonte, taille de haies, débroussaillage et petits travaux — autour de Brive et en Corrèze. Devis gratuit, intervention rapide.</p>
+    <div class="hero-btns">
+      <a href="tel:0641563230" class="btn btn-orange">📞 06 41 56 32 30</a>
+      <a href="prestations.html" class="btn btn-outline">Voir nos tarifs →</a>
+    </div>
   </div>
 </section>
 
-<!-- BANDEAU CONFIANCE -->
+<!-- CONFIANCE -->
 <div class="confiance">
-  <div class="confiance-item"><span class="icon">✅</span> Devis gratuit</div>
-  <div class="confiance-item"><span class="icon">⚡</span> Intervention rapide</div>
-  <div class="confiance-item"><span class="icon">💰</span> 50% crédit d'impôt</div>
-  <div class="confiance-item"><span class="icon">📋</span> Déclaré SAP</div>
-  <div class="confiance-item"><span class="icon">🏡</span> Artisan local</div>
+  <div class="confiance-item"><span class="ic">✅</span> Devis gratuit</div>
+  <div class="confiance-item"><span class="ic">⚡</span> Intervention rapide</div>
+  <div class="confiance-item"><span class="ic">💰</span> 50% crédit d'impôt</div>
+  <div class="confiance-item"><span class="ic">📋</span> Déclaré SAP</div>
+  <div class="confiance-item"><span class="ic">🏡</span> Artisan local Corrèze</div>
 </div>
 
 <!-- CRÉDIT IMPÔT -->
-<div class="credit-section">
-  <p>Bénéficiez du crédit d'impôt à 50% sur toutes vos prestations d'entretien</p>
+<div class="credit-bande">
+  <p>Bénéficiez du crédit d'impôt à 50 % sur toutes vos prestations d'entretien</p>
   <div class="credit-exemple">💡 Une prestation à 100 € ne vous coûte que 50 € après crédit d'impôt</div>
-  <div><span class="urssaf-badge">AVANCE IMMÉDIATE URSSAF DISPONIBLE</span></div>
+  <div><span class="urssaf-pill">AVANCE IMMÉDIATE URSSAF DISPONIBLE</span></div>
 </div>
 
 <!-- PRESTATIONS -->
 <section class="section" id="prestations">
-  <div class="section-titre">
-    <h2>Nos prestations</h2>
-    <p>Des tarifs clairs, à partir de...</p>
-    <div class="ligne"></div>
-  </div>
-  <div class="grille">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Nos prestations</h2>
+      <p>Tarifs clairs, à partir de... — devis gratuit sur place</p>
+      <div class="ligne-orange"></div>
+    </div>
+    <div class="grille-3">
 
-    <div class="carte">
-      <div class="carte-header">🌿 Haies</div>
-      <div class="carte-body">
-        <div class="ligne-tarif"><span class="label">Moins d'1,5 m</span><span class="prix">à partir de 5 € / ml</span></div>
-        <div class="ligne-tarif"><span class="label">1,5 m à 3 m</span><span class="prix">à partir de 8 € / ml</span></div>
-        <div class="ligne-tarif"><span class="label">3 m à 4 m</span><span class="prix">à partir de 11 € / ml</span></div>
+      <div class="carte">
+        <div class="carte-header">🌿 Haies</div>
+        <div class="carte-body">
+          <div class="tarif-row"><span class="label">Moins d'1,5 m</span><span class="prix">à partir de 5 € / ml</span></div>
+          <div class="tarif-row"><span class="label">1,5 m à 3 m</span><span class="prix">à partir de 8 € / ml</span></div>
+          <div class="tarif-row"><span class="label">3 m à 4 m</span><span class="prix">à partir de 11 € / ml</span></div>
+        </div>
+        <a href="prestations.html" class="carte-link">En savoir plus →</a>
       </div>
+
+      <div class="carte">
+        <div class="carte-header">🌾 Débroussaillage</div>
+        <div class="carte-body">
+          <div class="tarif-row"><span class="label">Pente, roncier, arbustes</span><span class="prix">à partir de 0,90 € / m²</span></div>
+          <div class="tarif-row"><span class="label">Herbe, fougère</span><span class="prix">à partir de 0,50 € / m²</span></div>
+          <div class="tarif-row"><span class="label">Avec évacuation</span><span class="prix">à partir de 0,70 € / m²</span></div>
+        </div>
+        <a href="prestations.html" class="carte-link">En savoir plus →</a>
+      </div>
+
+      <div class="carte">
+        <div class="carte-header">✂️ Tonte</div>
+        <div class="carte-body">
+          <div class="tarif-row"><span class="label">Pelouse &lt; 250 m²</span><span class="prix">à partir de 0,40 € / m²</span></div>
+          <div class="tarif-row"><span class="label">250 m² – 1 000 m²</span><span class="prix">à partir de 0,30 € / m²</span></div>
+          <div class="tarif-row"><span class="label">Plus de 1 000 m²</span><span class="prix">Sur devis</span></div>
+        </div>
+        <a href="prestations.html" class="carte-link">En savoir plus →</a>
+      </div>
+
+      <div class="carte">
+        <div class="carte-header">🌳 Taille d'arbres</div>
+        <div class="carte-body">
+          <div class="tarif-row"><span class="label">0 à 5 m</span><span class="prix">à partir de 100 €</span></div>
+          <div class="tarif-row"><span class="label">5 à 12 m</span><span class="prix">à partir de 200 €</span></div>
+          <div class="tarif-row"><span class="label">Au-delà</span><span class="prix">Sur devis</span></div>
+        </div>
+        <a href="prestations.html" class="carte-link">En savoir plus →</a>
+      </div>
+
+      <div class="carte">
+        <div class="carte-header">🧹 Nettoyage de terrasses</div>
+        <div class="carte-body">
+          <div class="tarif-row"><span class="label">Haute pression</span><span class="prix">à partir de 4 € / m²</span></div>
+          <div class="tarif-row"><span class="label">Forfait &lt; 10 m²</span><span class="prix">50 €</span></div>
+        </div>
+        <a href="prestations.html" class="carte-link">En savoir plus →</a>
+      </div>
+
+      <div class="carte">
+        <div class="carte-header">📋 Forfait entretien annuel</div>
+        <div class="carte-body">
+          <div class="tarif-row"><span class="label">Tonte + haies + nettoyage</span><span class="prix">Sur devis</span></div>
+          <div class="tarif-row"><span class="label">Contrat régulier</span><span class="prix">Tarif préférentiel</span></div>
+        </div>
+        <a href="contact.html" class="carte-link">Demander un devis →</a>
+      </div>
+
     </div>
 
-    <div class="carte">
-      <div class="carte-header">🌾 Débroussaillage</div>
-      <div class="carte-body">
-        <div class="ligne-tarif"><span class="label">Pente, roncier, arbustes</span><span class="prix">à partir de 0,90 € / m²</span></div>
-        <div class="ligne-tarif"><span class="label">Herbe, fougère</span><span class="prix">à partir de 0,50 € / m²</span></div>
-        <div class="ligne-tarif"><span class="label">Avec évacuation</span><span class="prix">à partir de 0,70 € / m²</span></div>
-      </div>
+    <div class="bandeau" style="margin-top:24px; border-radius:var(--radius);">
+      🍂 Ramassage de feuilles — Sur devis selon surface
     </div>
 
-    <div class="carte">
-      <div class="carte-header">✂️ Tonte</div>
-      <div class="carte-body">
-        <div class="ligne-tarif"><span class="label">Pelouse &lt; 250 m²</span><span class="prix">à partir de 0,40 € / m²</span></div>
-        <div class="ligne-tarif"><span class="label">250 m² – 1 000 m²</span><span class="prix">à partir de 0,30 € / m²</span></div>
-        <div class="ligne-tarif"><span class="label">Plus de 1 000 m²</span><span class="prix">Sur devis</span></div>
-      </div>
-    </div>
-
-    <div class="carte">
-      <div class="carte-header">🌳 Taille d'arbres</div>
-      <div class="carte-body">
-        <div class="ligne-tarif"><span class="label">0 à 5 m</span><span class="prix">à partir de 100 €</span></div>
-        <div class="ligne-tarif"><span class="label">5 à 12 m</span><span class="prix">à partir de 200 €</span></div>
-        <div class="ligne-tarif"><span class="label">Au-delà</span><span class="prix">Sur devis</span></div>
-      </div>
-    </div>
-
-    <div class="carte">
-      <div class="carte-header">🧹 Nettoyage de terrasses</div>
-      <div class="carte-body">
-        <div class="ligne-tarif"><span class="label">Haute pression</span><span class="prix">à partir de 4 € / m²</span></div>
-        <div class="ligne-tarif"><span class="label">Forfait &lt; 10 m²</span><span class="prix">50 €</span></div>
-      </div>
-    </div>
-
-    <div class="carte">
-      <div class="carte-header">📋 Forfait entretien annuel</div>
-      <div class="carte-body">
-        <div class="ligne-tarif"><span class="label">Tonte + haies + nettoyage</span><span class="prix">Sur devis</span></div>
-        <div class="ligne-tarif"><span class="label">Engagement annuel</span><span class="prix">Tarif préférentiel</span></div>
-      </div>
+    <div class="bandeau-bricolage">
+      🔧 <strong>Petits travaux à domicile</strong> — Montage de meubles · pose d'étagères · fixations murales · réparations courantes · pose de gaine enterrée &nbsp;·&nbsp; <em>Sur devis · éligible crédit d'impôt SAP</em>
     </div>
 
   </div>
 </section>
 
-<!-- BANDEAU FEUILLES -->
-<div class="bandeau-feuilles">🍂 Ramassage de feuilles — Sur devis selon surface</div>
-
-<!-- BRICOLAGE -->
-<div class="bricolage-section">
-  <div class="bricolage-carte">
-    🔧 <strong>Petits travaux à domicile</strong> — Montage de meubles · pose d'étagères · fixations murales · réparations courantes · pose de gaine enterrée &nbsp;·&nbsp; <em>Sur devis</em>
-  </div>
-</div>
-
 <!-- TÉMOIGNAGES -->
-<section class="temoignages" id="temoignages">
-  <div class="temoignages-inner">
-    <div class="section-titre">
+<section class="section section-temoignages" id="temoignages">
+  <div class="section-inner">
+    <div class="section-header">
       <h2>Ce que disent nos clients</h2>
       <p>Des particuliers satisfaits en Corrèze</p>
-      <div class="ligne"></div>
+      <div class="ligne-orange"></div>
     </div>
-    <div class="temoignages-grille">
-      <div class="temoignage">
+    <div class="temo-grille">
+      <div class="temo">
         <div class="etoiles">★★★★★</div>
-        <p class="temoignage-texte">"Florent est intervenu rapidement et le résultat est impeccable. Haies taillées proprement, jardin nettoyé. Je recommande sans hésiter."</p>
-        <div class="temoignage-auteur">Marie-Christine L.</div>
-        <div class="temoignage-lieu">Brive-la-Gaillarde</div>
+        <p class="temo-texte">"Florent est intervenu rapidement et le résultat est impeccable. Haies taillées proprement, jardin nettoyé. Je recommande sans hésiter."</p>
+        <div class="temo-auteur">Marie-Christine L.</div>
+        <div class="temo-lieu">Brive-la-Gaillarde</div>
       </div>
-      <div class="temoignage">
+      <div class="temo">
         <div class="etoiles">★★★★★</div>
-        <p class="temoignage-texte">"Très professionnel, ponctuel et soigneux. Mon grand terrain est enfin entretenu correctement. Tarifs honnêtes et crédit d'impôt en plus !"</p>
-        <div class="temoignage-auteur">Bernard T.</div>
-        <div class="temoignage-lieu">Malemort</div>
+        <p class="temo-texte">"Très professionnel, ponctuel et soigneux. Mon grand terrain est enfin bien entretenu. Tarifs honnêtes et crédit d'impôt en plus !"</p>
+        <div class="temo-auteur">Bernard T.</div>
+        <div class="temo-lieu">Malemort</div>
       </div>
-      <div class="temoignage">
+      <div class="temo">
         <div class="etoiles">★★★★★</div>
-        <p class="temoignage-texte">"Je fais appel à VERT 19 régulièrement. Toujours réactif, le jardin est toujours nickel. Je ne cherche plus d'autre jardinier."</p>
-        <div class="temoignage-auteur">Sylvie M.</div>
-        <div class="temoignage-lieu">Varetz</div>
+        <p class="temo-texte">"Je fais appel à VERT 19 régulièrement. Toujours réactif, le jardin est toujours nickel. Je ne cherche plus d'autre jardinier."</p>
+        <div class="temo-auteur">Sylvie M.</div>
+        <div class="temo-lieu">Varetz</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ZONE -->
-<div class="zone-section" id="zone">
+<div class="zone-bande" id="zone">
   <strong>📍 Zone d'intervention</strong>
   <p>Brive-la-Gaillarde · Malemort · Varetz · Donzenac · Objat · Ussac · Saint-Viance · et alentours en Corrèze</p>
 </div>
 
 <!-- SAP -->
-<div class="sap-section">
-  <div class="sap-carte">
-    <strong>VERT 19</strong> est déclaré prestataire de services à la personne (SAP n° SAP989041074 · SIRET 989 041 074 00018). Vous bénéficiez de <strong>50% de crédit d'impôt</strong> sur les prestations selon l'article 199 sexdecies du CGI. Avec l'<strong>Avance immédiate Urssaf</strong>, le crédit d'impôt est déduit directement de votre facture — sans avance de trésorerie.
+<section class="section" style="padding:40px 20px;">
+  <div class="section-inner">
+    <div class="sap-inner">
+      <strong>VERT 19</strong> est déclaré prestataire de services à la personne (SAP n° SAP989041074 · SIRET 989 041 074 00018). Vous bénéficiez de <strong>50 % de crédit d'impôt</strong> sur les prestations selon l'article 199 sexdecies du CGI. Avec l'<strong>Avance immédiate Urssaf</strong>, le crédit d'impôt est déduit directement de votre facture — sans avance de trésorerie de votre part.
+    </div>
   </div>
-</div>
+</section>
 
-<!-- CTA BAS -->
+<!-- CTA -->
 <section class="cta-section">
   <h2>Devis gratuit — sans engagement</h2>
   <p>Je me déplace en Corrèze · Réponse sous 24h · Intervention rapide</p>
   <div class="cta-btns">
-    <a href="tel:0641563230" class="btn-primary">📞 06 41 56 32 30</a>
-    <a href="mailto:vert19100@gmail.com" class="btn-secondary">✉️ vert19100@gmail.com</a>
+    <a href="tel:0641563230" class="btn btn-orange">📞 06 41 56 32 30</a>
+    <a href="mailto:vert19100@gmail.com" class="btn-outline-white">✉️ vert19100@gmail.com</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <strong>Florent PORTEFAIX — VERT 19</strong><br>
-  Entretien des espaces verts &amp; Jardinage · Corrèze<br>
-  📸 @vert19100 · vert19100@gmail.com
+  Entretien des espaces verts &amp; Jardinage · Corrèze
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="prestations.html">Prestations</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://instagram.com/vert19100" target="_blank">@vert19100</a>
+  </div>
 </footer>
 
 </body>
