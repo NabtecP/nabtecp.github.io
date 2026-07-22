@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VERT 19 - Entretien des espaces verts et jardinage en Corrèze. Tonte, taille de haies, débroussaillage, élagage autour de Brive. Devis gratuit. Crédit d'impôt 50%.">
+  <title>VERT 19 - Entretien des espaces verts en Corrèze</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; color: #1a1a1a; }
+
+    /* HEADER */
+    header {
+      background-color: #1A5C38;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+    }
+    header h1 { font-size: 2.8em; font-weight: bold; letter-spacing: 2px; }
+    header p.sous-titre { font-size: 1.2em; margin-top: 8px; opacity: 0.9; }
+    header p.zone { font-size: 0.95em; margin-top: 6px; opacity: 0.75; }
+    .badge-credit {
+      background-color: #E05C00;
+      color: white;
+      border-radius: 50%;
+      width: 90px;
+      height: 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75em;
+      font-weight: bold;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .badge-credit span { font-size: 1.8em; }
+    .badge-urssaf {
+      background-color: #1565C0;
+      color: white;
+      font-size: 0.65em;
+      font-weight: bold;
+      padding: 4px 10px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    /* ACCROCHE */
+    .accroche {
+      background-color: #f9f9f9;
+      text-align: center;
+      padding: 25px 20px;
+      border-bottom: 3px solid #1A5C38;
+    }
+    .accroche h2 { color: #1A5C38; font-size: 1.4em; margin-bottom: 8px; }
+    .accroche p { font-size: 1em; color: #444; }
+    .accroche .exemple {
+      background-color: #EAF4EE;
+      border-left: 4px solid #1A5C38;
+      padding: 12px 20px;
+      margin: 15px auto;
+      max-width: 600px;
+      font-size: 0.95em;
+      color: #1A5C38;
+      font-weight: bold;
+    }
+    .cta-top {
+      display: inline-block;
+      background-color: #E05C00;
+      color: white;
+      padding: 14px 30px;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 15px;
+      border-radius: 4px;
+    }
+
+    /* PRESTATIONS */
+    .prestations {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .prestations h2 {
+      text-align: center;
+      color: #1A5C38;
+      font-size: 1.6em;
+      margin-bottom: 30px;
+    }
+    .grille {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .carte {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .carte-titre {
+      background-color: #E05C00;
+      color: white;
+      padding: 10px 15px;
+      font-weight: bold;
+      font-size: 1em;
+    }
+    .carte-contenu { padding: 15px; }
+    .carte-contenu p { margin-bottom: 6px; font-size: 0.9em; color: #444; }
+    .carte-contenu strong { color: #1A5C38; font-size: 1em; }
+
+    /* BANDEAU FEUILLES */
+    .bandeau {
+      background-color: #2D7A4F;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      font-weight: bold;
+      font-size: 1em;
+    }
+
+    /* BRICOLAGE */
+    .bricolage {
+      background-color: #FFF3E0;
+      border: 1px solid #E05C00;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 15px 25px;
+      font-size: 0.95em;
+    }
+
+    /* ZONE */
+    .zone-section {
+      background-color: #EAF4EE;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #1A5C38;
+    }
+    .zone-section strong { display: block; margin-bottom: 6px; font-size: 1em; }
+
+    /* SAP */
+    .sap {
+      background-color: #f4f4f4;
+      border-top: 3px solid #1A5C38;
+      padding: 25px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      font-size: 0.85em;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    /* CTA BAS */
+    .cta-section {
+      background-color: #1A5C38;
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+    .cta-section h2 { font-size: 1.4em; margin-bottom: 10px; }
+    .cta-section p { font-size: 1em; opacity: 0.85; margin-bottom: 20px; }
+    .cta-section a.btn {
+      display: inline-block;
+      background-color: #E05C00;
+      color: white;
+      padding: 16px 35px;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 4px;
+      margin: 8px;
+    }
+    .cta-section a.btn-email {
+      display: inline-block;
+      background-color: transparent;
+      color: white;
+      padding: 16px 35px;
+      font-size: 1em;
+      text-decoration: none;
+      border: 2px solid white;
+      border-radius: 4px;
+      margin: 8px;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.8em;
+    }
+    footer strong { color: white; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      header h1 { font-size: 2em; }
+      .badge-credit { width: 70px; height: 70px; font-size: 0.65em; top: 15px; right: 15px; }
+      .badge-credit span { font-size: 1.5em; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <h1>VERT 19</h1>
+  <p class="sous-titre">Entretien des espaces verts &amp; Jardinage</p>
+  <p class="zone">Corrèze</p>
+  <div class="badge-credit">
+    <span>50%</span>
+    CRÉDIT<br>D'IMPÔTS
+  </div>
+  <div class="badge-urssaf">AVANCE IMMÉDIATE URSSAF</div>
+</header>
+
+<!-- ACCROCHE -->
+<section class="accroche">
+  <h2>Devis gratuit · Intervention rapide · Sans engagement</h2>
+  <div class="exemple">
+    💡 Exemple : une prestation à 100 € ne vous coûte que <u>50 € après crédit d'impôt</u>
+  </div>
+  <a class="cta-top" href="tel:0641563230">📞 Appelez-moi maintenant</a>
+</section>
+
+<!-- PRESTATIONS -->
+<section class="prestations">
+  <h2>Nos prestations</h2>
+  <div class="grille">
+
+    <div class="carte">
+      <div class="carte-titre">🌿 Haies</div>
+      <div class="carte-contenu">
+        <p>Moins d'1,5 m :</p>
+        <strong>à partir de 5 € / ml</strong>
+        <p>Entre 1,5 m et 3 m :</p>
+        <strong>à partir de 8 € / ml</strong>
+        <p>Entre 3 m et 4 m :</p>
+        <strong>à partir de 11 € / ml</strong>
+      </div>
+    </div>
+
+    <div class="carte">
+      <div class="carte-titre">🌾 Débroussaillage</div>
+      <div class="carte-contenu">
+        <p>Pente, roncier, arbustes :</p>
+        <strong>à partir de 0,90 € / m²</strong>
+        <p>Herbe, fougère :</p>
+        <strong>à partir de 0,50 € / m²</strong>
+        <p>Avec évacuation :</p>
+        <strong>à partir de 0,70 € / m²</strong>
+      </div>
+    </div>
+
+    <div class="carte">
+      <div class="carte-titre">✂️ Tonte</div>
+      <div class="carte-contenu">
+        <p>Pelouse &lt; 250 m² :</p>
+        <strong>à partir de 0,40 € / m²</strong>
+        <p>Pelouse 250 – 1 000 m² :</p>
+        <strong>à partir de 0,30 € / m²</strong>
+        <p>Plus de 1 000 m² :</p>
+        <strong>Sur devis</strong>
+      </div>
+    </div>
+
+    <div class="carte">
+      <div class="carte-titre">🌳 Taille d'arbres</div>
+      <div class="carte-contenu">
+        <p>0 à 5 m :</p>
+        <strong>à partir de 100 €</strong>
+        <p>5 à 12 m :</p>
+        <strong>à partir de 200 €</strong>
+        <p>Au-delà :</p>
+        <strong>Sur devis</strong>
+      </div>
+    </div>
+
+    <div class="carte">
+      <div class="carte-titre">🧹 Nettoyage de terrasses</div>
+      <div class="carte-contenu">
+        <p>Nettoyage haute pression :</p>
+        <strong>à partir de 4 € / m²</strong>
+        <p>Forfait &lt; 10 m² :</p>
+        <strong>50 €</strong>
+      </div>
+    </div>
+
+    <div class="carte">
+      <div class="carte-titre">📋 Forfait entretien annuel</div>
+      <div class="carte-contenu">
+        <p>Tonte + taille de haies + nettoyage</p>
+        <strong>Sur devis</strong>
+        <p style="margin-top:8px; font-size:0.85em; color:#888;">Tarif préférentiel pour les contrats réguliers</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BANDEAU FEUILLES -->
+<div class="bandeau">🍂 Ramassage de feuilles — Sur devis selon surface</div>
+
+<!-- BRICOLAGE -->
+<div class="bricolage" style="max-width:960px; margin: 20px auto; padding: 15px 25px;">
+  🔧 <strong>Également disponible pour petits travaux à domicile</strong> — montage de meubles, pose d'étagères, fixations murales, réparations courantes, pose de gaine enterrée · <em>Sur devis</em>
+</div>
+
+<!-- ZONE D'INTERVENTION -->
+<div class="zone-section">
+  <strong>📍 Zone d'intervention</strong>
+  Brive · Malemort · Varetz · Donzenac · Objat · Ussac · Saint-Viance · et alentours
+</div>
+
+<!-- SAP -->
+<div class="sap">
+  <strong>VERT 19</strong> est déclaré prestataire de services à la personne. Vous bénéficiez de 50 % de crédit d'impôt sur les prestations selon les conditions prévues à l'article 199 sexdecies du Code général des impôts (CGI). Avec l'<strong>Avance immédiate Urssaf</strong>, le crédit d'impôt est déduit directement de votre facture — sans avance de trésorerie de votre part.<br><br>
+  SIRET : 989 041 074 00018 · Déclaration SAP n° SAP989041074
+</div>
+
+<!-- CTA BAS -->
+<section class="cta-section">
+  <h2>Devis gratuit — je me déplace sans engagement</h2>
+  <p>Intervention rapide en Corrèze · Réponse sous 24h</p>
+  <a class="btn" href="tel:0641563230">📞 06 41 56 32 30</a>
+  <a class="btn-email" href="mailto:vert19100@gmail.com">✉️ vert19100@gmail.com</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Florent PORTEFAIX — VERT 19</strong><br>
+  Entretien des espaces verts &amp; Jardinage · Corrèze<br>
+  📸 Instagram : @vert19100
+</footer>
+
+</body>
+</html>
