@@ -3,215 +3,186 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Réalisations VERT 19 - Photos avant/après de nos chantiers d'entretien des espaces verts en Corrèze.">
+  <meta name="description" content="Réalisations VERT 19 - Photos de nos chantiers d'entretien des espaces verts en Corrèze.">
   <title>Réalisations — VERT 19</title>
   <style>
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; background: #fff; }
+    body { font-family:'Segoe UI',Arial,sans-serif; color:#1a1a1a; background:#fff; }
     :root {
-      --vert: #1A5C38; --vert-clair: #2D7A4F; --vert-pale: #EAF4EE;
-      --orange: #E05C00; --gris: #f7f7f7; --texte-clair: #666;
+      --vert:#1A5C38; --vert2:#2D7A4F; --vert-pale:#EAF4EE;
+      --orange:#E05C00; --gris:#F8F8F8; --texte-clair:#666;
+      --radius:6px; --shadow:0 4px 20px rgba(0,0,0,0.08);
     }
     nav {
-      position: sticky; top: 0; z-index: 100; background: var(--vert);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 30px; height: 60px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      position:sticky; top:0; z-index:999; background:var(--vert);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 40px; height:64px; box-shadow:0 2px 12px rgba(0,0,0,0.25);
     }
-    .nav-logo { color: white; font-size: 1.4em; font-weight: 900; letter-spacing: 2px; text-decoration: none; }
-    .nav-links { display: flex; gap: 25px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9em; font-weight: 500; }
-    .nav-links a:hover { color: white; }
-    .nav-cta { background: var(--orange); color: white !important; padding: 8px 18px; border-radius: 3px; font-weight: 700 !important; }
-
-    .hero { background: linear-gradient(135deg, #0d3d24, #1A5C38); color: white; text-align: center; padding: 60px 20px; }
-    .hero h1 { font-size: 2.2em; font-weight: 900; margin-bottom: 10px; }
-    .hero p { font-size: 1em; opacity: 0.8; }
-
-    .page { max-width: 1050px; margin: 50px auto; padding: 0 20px; }
-
-    /* MESSAGE PHOTOS */
-    .message-photos {
-      background: var(--vert-pale);
-      border: 1px solid #c8e6d4;
-      border-left: 4px solid var(--vert);
-      border-radius: 4px;
-      padding: 20px 24px;
-      margin-bottom: 40px;
-      text-align: center;
+    .nav-logo {
+      color:#fff; font-size:1.5em; font-weight:900; letter-spacing:3px;
+      text-decoration:none; display:flex; align-items:center; gap:10px;
     }
-    .message-photos p { color: var(--texte-clair); line-height: 1.7; font-size: 0.95em; }
-    .message-photos strong { color: var(--vert); }
+    .nav-logo-dot { width:10px; height:10px; background:var(--orange); border-radius:50%; }
+    .nav-links { display:flex; align-items:center; gap:8px; list-style:none; }
+    .nav-links a { color:rgba(255,255,255,0.82); text-decoration:none; font-size:0.88em; font-weight:500; padding:6px 14px; border-radius:4px; transition:all 0.2s; }
+    .nav-links a:hover { color:#fff; background:rgba(255,255,255,0.1); }
+    .nav-cta { background:var(--orange); color:#fff !important; font-weight:700 !important; padding:8px 20px !important; }
+    .nav-cta:hover { background:#c44f00 !important; }
 
-    /* GRILLE RÉALISATIONS */
-    .realisations-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 50px; }
-    .realisation-carte {
-      background: var(--gris);
-      border: 1px solid #e8e8e8;
-      border-radius: 6px;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .realisation-carte:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+    .hero { background:linear-gradient(150deg,#082618,#1A5C38); color:#fff; text-align:center; padding:60px 20px; }
+    .hero h1 { font-size:2.4em; font-weight:900; margin-bottom:10px; }
+    .hero p { font-size:1em; opacity:0.78; }
 
-    /* PLACEHOLDER PHOTO */
-    .photo-placeholder {
-      height: 200px;
-      background: linear-gradient(135deg, #c8e6d4, #EAF4EE);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: var(--vert);
-      font-size: 0.85em;
-      gap: 8px;
-    }
-    .photo-placeholder .grande-icone { font-size: 3em; }
-    .photo-placeholder p { opacity: 0.7; font-size: 0.9em; }
+    .page { max-width:1060px; margin:55px auto; padding:0 20px; }
 
-    .realisation-info { padding: 16px; }
-    .realisation-type {
-      display: inline-block;
-      background: var(--orange);
-      color: white;
-      font-size: 0.75em;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 12px;
-      margin-bottom: 8px;
+    /* GRILLE PHOTOS */
+    .grille { display:grid; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); gap:26px; margin-bottom:50px; }
+    .carte {
+      background:#fff; border:1px solid #e8e8e8; border-radius:var(--radius);
+      overflow:hidden; box-shadow:var(--shadow);
+      transition:transform 0.2s, box-shadow 0.2s;
     }
-    .realisation-info h3 { font-size: 1em; font-weight: 700; color: var(--vert); margin-bottom: 4px; }
-    .realisation-info p { font-size: 0.85em; color: var(--texte-clair); }
+    .carte:hover { transform:translateY(-4px); box-shadow:0 12px 35px rgba(0,0,0,0.12); }
+    .carte img {
+      width:100%; height:220px; object-fit:cover;
+      display:block; transition:transform 0.3s;
+    }
+    .carte:hover img { transform:scale(1.03); }
+    .carte-overflow { overflow:hidden; }
+    .carte-info { padding:16px 18px; }
+    .carte-type {
+      display:inline-block; background:var(--orange); color:#fff;
+      font-size:0.73em; font-weight:700; padding:3px 12px;
+      border-radius:12px; margin-bottom:8px;
+    }
+    .carte-info h3 { font-size:1em; font-weight:700; color:var(--vert); margin-bottom:4px; }
+    .carte-info p { font-size:0.86em; color:var(--texte-clair); }
 
     /* INSTAGRAM */
     .instagram-section {
-      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-      border-radius: 6px;
-      margin-bottom: 50px;
+      background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+      color:#fff; text-align:center; padding:44px 20px;
+      border-radius:var(--radius); margin-bottom:50px;
     }
-    .instagram-section h2 { font-size: 1.5em; margin-bottom: 10px; }
-    .instagram-section p { opacity: 0.9; margin-bottom: 20px; font-size: 0.95em; }
+    .instagram-section h2 { font-size:1.5em; margin-bottom:10px; }
+    .instagram-section p { opacity:0.9; margin-bottom:22px; font-size:0.95em; }
     .btn-instagram {
-      display: inline-block;
-      background: white;
-      color: #833ab4;
-      padding: 12px 28px;
-      font-size: 1em;
-      font-weight: 700;
-      text-decoration: none;
-      border-radius: 4px;
+      display:inline-block; background:#fff; color:#833ab4;
+      padding:12px 28px; font-size:1em; font-weight:700;
+      text-decoration:none; border-radius:4px;
+      transition:transform 0.2s;
     }
+    .btn-instagram:hover { transform:translateY(-2px); }
 
     /* CTA */
-    .cta-bas { background: var(--vert); color: white; text-align: center; padding: 40px 20px; border-radius: 6px; margin-bottom: 50px; }
-    .cta-bas h2 { font-size: 1.5em; margin-bottom: 10px; }
-    .cta-bas p { opacity: 0.8; margin-bottom: 20px; }
-    .btn-appel { display: inline-block; background: var(--orange); color: white; padding: 14px 30px; font-size: 1.1em; font-weight: 700; text-decoration: none; border-radius: 4px; }
+    .cta-bas {
+      background:linear-gradient(135deg,#082618,#1A5C38);
+      color:#fff; text-align:center; padding:50px 20px;
+      border-radius:var(--radius); margin-bottom:50px;
+    }
+    .cta-bas h2 { font-size:1.6em; margin-bottom:10px; }
+    .cta-bas p { opacity:0.78; margin-bottom:24px; }
+    .btn-orange {
+      display:inline-block; background:var(--orange); color:#fff;
+      padding:15px 32px; font-size:1.05em; font-weight:700;
+      text-decoration:none; border-radius:4px;
+      transition:all 0.2s;
+    }
+    .btn-orange:hover { background:#c44f00; transform:translateY(-2px); }
 
-    footer { background: #0d1f14; color: rgba(255,255,255,0.5); text-align: center; padding: 24px 20px; font-size: 0.82em; line-height: 1.8; }
-    footer strong { color: rgba(255,255,255,0.8); }
+    footer {
+      background:#0a1f10; color:rgba(255,255,255,0.45);
+      padding:36px 20px; text-align:center;
+      font-size:0.82em; line-height:2;
+    }
+    footer strong { color:rgba(255,255,255,0.8); font-size:1.05em; }
+    .footer-links { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:12px; }
+    .footer-links a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.9em; }
+    .footer-links a:hover { color:rgba(255,255,255,0.8); }
 
-    @media (max-width: 640px) {
-      nav { padding: 0 15px; }
-      .nav-links { display: none; }
+    @media (max-width:700px) {
+      nav { padding:0 16px; }
+      .nav-links { display:none; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">VERT 19</a>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    VERT 19
+  </a>
   <ul class="nav-links">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="prestations.html">Prestations</a></li>
     <li><a href="realisations.html">Réalisations</a></li>
-    <li><a href="contact.html" class="nav-cta">📞 Contact</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="tel:0641563230" class="nav-cta">📞 Devis gratuit</a></li>
   </ul>
 </nav>
 
 <div class="hero">
   <h1>Nos réalisations</h1>
-  <p>Photos de chantiers réalisés en Corrèze</p>
+  <p>Photos de chantiers réalisés en Corrèze par VERT 19</p>
 </div>
 
 <div class="page">
 
-  <div class="message-photos">
-    <p>📸 Cette page est réservée à nos photos de chantiers.<br>
-    <strong>Ajoutez vos propres photos</strong> en remplaçant les emplacements ci-dessous.<br>
-    En attendant, retrouvez toutes nos réalisations sur Instagram <strong>@vert19100</strong></p>
-  </div>
+  <div class="grille">
 
-  <div class="realisations-grille">
-
-    <img src="photo1.jpg" alt="Taille de haies Brive" 
-style="width:100%; height:200px; object-fit:cover;">
-      <div class="realisation-info">
-        <span class="realisation-type">Taille de haies</span>
-        <h3>Haie de tuyas — Brive</h3>
-        <p>Remise en forme complète d'une haie de 25 mètres</p>
+    <div class="carte">
+      <div class="carte-overflow">
+        <img src="haie1.jpg" alt="Taille de haie en Corrèze">
+      </div>
+      <div class="carte-info">
+        <span class="carte-type">Taille de haies</span>
+        <h3>Haie taillée — Corrèze</h3>
+        <p>Remise en forme et taille d'entretien</p>
       </div>
     </div>
 
-    <div class="realisation-carte">
-      <div class="photo-placeholder">
-        <span class="grande-icone">✂️</span>
-        <p>Votre photo ici</p>
+    <div class="carte">
+      <div class="carte-overflow">
+        <img src="haie2.jpg" alt="Taille de haie en Corrèze">
       </div>
-      <div class="realisation-info">
-        <span class="realisation-type">Tonte</span>
-        <h3>Pelouse — Malemort</h3>
-        <p>Tonte et bordures d'une pelouse de 800 m²</p>
-      </div>
-    </div>
-
-    <div class="realisation-carte">
-      <div class="photo-placeholder">
-        <span class="grande-icone">🌾</span>
-        <p>Votre photo ici</p>
-      </div>
-      <div class="realisation-info">
-        <span class="realisation-type">Débroussaillage</span>
-        <h3>Terrain en friche — Varetz</h3>
-        <p>Débroussaillage complet d'un terrain de 2 000 m²</p>
+      <div class="carte-info">
+        <span class="carte-type">Taille de haies</span>
+        <h3>Haie taillée — Corrèze</h3>
+        <p>Taille soignée des deux côtés et du dessus</p>
       </div>
     </div>
 
-    <div class="realisation-carte">
-      <div class="photo-placeholder">
-        <span class="grande-icone">🌳</span>
-        <p>Votre photo ici</p>
+    <div class="carte">
+      <div class="carte-overflow">
+        <img src="haie3.jpg" alt="Taille de haie en Corrèze">
       </div>
-      <div class="realisation-info">
-        <span class="realisation-type">Taille d'arbres</span>
-        <h3>Élagage — Donzenac</h3>
-        <p>Taille de mise en forme de 3 arbres fruitiers</p>
-      </div>
-    </div>
-
-    <div class="realisation-carte">
-      <div class="photo-placeholder">
-        <span class="grande-icone">🧹</span>
-        <p>Votre photo ici</p>
-      </div>
-      <div class="realisation-info">
-        <span class="realisation-type">Terrasse</span>
-        <h3>Nettoyage haute pression — Ussac</h3>
-        <p>Remise en état d'une terrasse en pierre de 40 m²</p>
+      <div class="carte-info">
+        <span class="carte-type">Taille de haies</span>
+        <h3>Haie taillée — Corrèze</h3>
+        <p>Finition au sécateur pour un résultat impeccable</p>
       </div>
     </div>
 
-    <div class="realisation-carte">
-      <div class="photo-placeholder">
-        <span class="grande-icone">🍂</span>
-        <p>Votre photo ici</p>
+    <div class="carte">
+      <div class="carte-overflow">
+        <img src="arbre1.jpg" alt="Taille d'arbre en Corrèze">
       </div>
-      <div class="realisation-info">
-        <span class="realisation-type">Ramassage feuilles</span>
-        <h3>Parc arboré — Saint-Viance</h3>
-        <p>Ramassage et évacuation de feuilles mortes</p>
+      <div class="carte-info">
+        <span class="carte-type">Taille d'arbres</span>
+        <h3>Élagage — Corrèze</h3>
+        <p>Taille de mise en forme et suppression des branches mortes</p>
+      </div>
+    </div>
+
+    <div class="carte">
+      <div class="carte-overflow">
+        <img src="arbre2.jpg" alt="Taille d'arbre en Corrèze">
+      </div>
+      <div class="carte-info">
+        <span class="carte-type">Taille d'arbres</span>
+        <h3>Élagage — Corrèze</h3>
+        <p>Intervention soignée dans le respect de la forme naturelle</p>
       </div>
     </div>
 
@@ -220,23 +191,29 @@ style="width:100%; height:200px; object-fit:cover;">
   <!-- INSTAGRAM -->
   <div class="instagram-section">
     <h2>📸 Suivez-nous sur Instagram</h2>
-    <p>Retrouvez toutes nos réalisations en photos et vidéos sur notre compte Instagram</p>
+    <p>Retrouvez toutes nos réalisations en photos et vidéos sur notre compte</p>
     <a href="https://instagram.com/vert19100" target="_blank" class="btn-instagram">@vert19100</a>
   </div>
 
   <!-- CTA -->
   <div class="cta-bas">
     <h2>Votre jardin pourrait être notre prochaine réalisation</h2>
-    <p>Devis gratuit · Je me déplace sans engagement</p>
-    <a href="tel:0641563230" class="btn-appel">📞 06 41 56 32 30</a>
+    <p>Devis gratuit · Je me déplace sans engagement · Intervention rapide</p>
+    <a href="tel:0641563230" class="btn-orange">📞 06 41 56 32 30</a>
   </div>
 
 </div>
 
 <footer>
   <strong>Florent PORTEFAIX — VERT 19</strong><br>
-  Entretien des espaces verts &amp; Jardinage · Corrèze<br>
-  📸 @vert19100 · vert19100@gmail.com
+  Entretien des espaces verts &amp; Jardinage · Corrèze
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="prestations.html">Prestations</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://instagram.com/vert19100" target="_blank">@vert19100</a>
+  </div>
 </footer>
 
 </body>
