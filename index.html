@@ -314,7 +314,19 @@
     <li><a href="contact.html">Contact</a></li>
     <li><a href="tel:0641563230" class="nav-cta">📞 Devis gratuit</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MENU MOBILE -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">🏠 Accueil</a>
+  <a href="prestations.html" onclick="closeMenu()">📋 Prestations & Tarifs</a>
+  <a href="realisations.html" onclick="closeMenu()">📸 Réalisations</a>
+  <a href="contact.html" onclick="closeMenu()">✉️ Contact</a>
+  <a href="tel:0641563230" class="nav-cta-mobile">📞 06 41 56 32 30 — Devis gratuit</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -510,5 +522,26 @@
   </div>
 </footer>
 
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+  // Fermer si clic en dehors
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburger');
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+    }
+  });
+</script>
 </body>
 </html>
