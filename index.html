@@ -49,6 +49,72 @@
     .nav-links .nav-cta { background:var(--orange); color:#fff !important; font-weight:700; padding:8px 20px; }
     .nav-links .nav-cta:hover { background:#c44f00; }
 
+    /* ── HAMBURGER (invisible sur desktop) ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--orange);
+      border-radius: 3px;
+      transition: all 0.3s;
+    }
+
+    /* ── MENU MOBILE (invisible par défaut) ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      z-index: 998;
+      flex-direction: column;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 28px;
+      font-size: 1.05em;
+      font-weight: 700;
+      color: var(--vert);
+      text-decoration: none;
+      border-bottom: 1px solid #f0f0f0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .mobile-menu a::after { content: '›'; font-size: 1.4em; color: #ccc; }
+    .mobile-menu-cta {
+      padding: 20px;
+      margin-top: auto;
+    }
+    .mobile-menu-cta a {
+      display: block;
+      background: var(--orange);
+      color: #fff !important;
+      text-align: center;
+      padding: 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.1em;
+      text-decoration: none;
+      border-bottom: none !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+    }
+    .mobile-menu-cta a::after { display: none; }
+
     /* ── HERO AVEC PHOTO ── */
     .hero {
       position:relative;
@@ -57,8 +123,6 @@
       padding:80px 40px; text-align:center; overflow:hidden;
       color:#fff;
     }
-
-    /* Photo de fond via Unsplash (jardin bien taillé, libre de droits) */
     .hero-bg {
       position:absolute; inset:0; z-index:0;
       background-image: url('photoaccueil.jpg');
@@ -70,8 +134,6 @@
       from { transform:scale(1.05); }
       to   { transform:scale(1.12); }
     }
-
-    /* Overlay sombre pour lisibilité du texte */
     .hero-overlay {
       position:absolute; inset:0; z-index:1;
       background:linear-gradient(150deg,
@@ -79,7 +141,6 @@
         rgba(15,61,34,0.72) 50%,
         rgba(26,92,56,0.60) 100%);
     }
-
     .hero-inner { position:relative; z-index:2; max-width:700px; }
     .hero-eyebrow {
       display:inline-flex; align-items:center; gap:8px;
@@ -104,7 +165,6 @@
     .btn-orange:hover { background:#c44f00; transform:translateY(-2px); box-shadow:0 6px 20px rgba(224,92,0,0.5); }
     .btn-outline { background:rgba(255,255,255,0.1); backdrop-filter:blur(4px); color:#fff; border:2px solid rgba(255,255,255,0.5); }
     .btn-outline:hover { background:rgba(255,255,255,0.2); border-color:#fff; transform:translateY(-2px); }
-
     .hero-badge {
       position:absolute; top:28px; right:28px; z-index:3;
       background:var(--orange); color:#fff;
@@ -120,8 +180,6 @@
     }
     .hero-badge .big { font-size:1.9em; }
     .hero-badge .small { font-size:0.6em; opacity:0.92; }
-
-    /* Scroll indicator */
     .scroll-hint {
       position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
       z-index:2; color:rgba(255,255,255,0.5); font-size:0.75em;
@@ -265,10 +323,11 @@
     .footer-links a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.9em; }
     .footer-links a:hover { color:rgba(255,255,255,0.8); }
 
-    /* ── RESPONSIVE ── */
+    /* ── RESPONSIVE MOBILE ── */
     @media (max-width:700px) {
       nav { padding:0 16px; }
       .nav-links { display:none; }
+      .hamburger { display:flex; }
       .hero { min-height:auto; padding:80px 20px 60px; }
       .hero-badge { width:72px; height:72px; top:16px; right:16px; }
       .hero-badge .big { font-size:1.5em; }
@@ -277,7 +336,6 @@
     }
   </style>
 
-  <!-- Données structurées JSON-LD pour Google -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -287,11 +345,7 @@
     "url": "https://vert19.fr",
     "telephone": "0641563230",
     "email": "vert19100@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "Corrèze",
-      "addressCountry": "FR"
-    },
+    "address": { "@type": "PostalAddress", "addressRegion": "Corrèze", "addressCountry": "FR" },
     "areaServed": ["Brive-la-Gaillarde","Malemort","Varetz","Donzenac","Objat","Ussac","Saint-Viance"],
     "priceRange": "€",
     "openingHours": ["Mo-Fr 08:00-18:00", "Sa 08:00-12:00"],
@@ -303,6 +357,9 @@
 
 <!-- NAV -->
 <nav>
+  <button class="hamburger" id="hamburger" onclick="openMenu()">
+    <span></span><span></span><span></span>
+  </button>
   <a href="index.html" class="nav-logo">
     <div class="nav-logo-dot"></div>
     VERT 19
@@ -315,6 +372,17 @@
     <li><a href="tel:0641563230" class="nav-cta">📞 Devis gratuit</a></li>
   </ul>
 </nav>
+
+<!-- MENU MOBILE -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="prestations.html" onclick="closeMenu()">Prestations & Tarifs</a>
+  <a href="realisations.html" onclick="closeMenu()">Réalisations</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+  <div class="mobile-menu-cta">
+    <a href="tel:0641563230" onclick="closeMenu()">📞 06 41 56 32 30 — Devis gratuit</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -361,7 +429,6 @@
       <div class="ligne-orange"></div>
     </div>
     <div class="grille-3">
-
       <div class="carte">
         <div class="carte-header">🌿 Taille de haies</div>
         <div class="carte-body">
@@ -371,7 +438,6 @@
         </div>
         <a href="prestations.html" class="carte-link">En savoir plus →</a>
       </div>
-
       <div class="carte">
         <div class="carte-header">🌾 Débroussaillage Corrèze</div>
         <div class="carte-body">
@@ -381,7 +447,6 @@
         </div>
         <a href="prestations.html" class="carte-link">En savoir plus →</a>
       </div>
-
       <div class="carte">
         <div class="carte-header">✂️ Tonte de pelouse</div>
         <div class="carte-body">
@@ -391,7 +456,6 @@
         </div>
         <a href="prestations.html" class="carte-link">En savoir plus →</a>
       </div>
-
       <div class="carte">
         <div class="carte-header">🌳 Élagage et taille d'arbres</div>
         <div class="carte-body">
@@ -401,7 +465,6 @@
         </div>
         <a href="prestations.html" class="carte-link">En savoir plus →</a>
       </div>
-
       <div class="carte">
         <div class="carte-header">🧹 Nettoyage de terrasses</div>
         <div class="carte-body">
@@ -410,7 +473,6 @@
         </div>
         <a href="prestations.html" class="carte-link">En savoir plus →</a>
       </div>
-
       <div class="carte">
         <div class="carte-header">📋 Forfait entretien annuel</div>
         <div class="carte-body">
@@ -419,15 +481,11 @@
         </div>
         <a href="contact.html" class="carte-link">Demander un devis →</a>
       </div>
-
     </div>
-
     <div class="bandeau">🍂 Ramassage de feuilles en Corrèze — Sur devis selon surface</div>
-
     <div class="bandeau-bricolage">
       🔧 <strong>Petits travaux à domicile</strong> — Montage de meubles · pose d'étagères · fixations murales · réparations courantes · pose de gaine enterrée &nbsp;·&nbsp; <em>Sur devis · éligible crédit d'impôt SAP</em>
     </div>
-
   </div>
 </section>
 
@@ -454,7 +512,7 @@
       </div>
       <div class="temo">
         <div class="etoiles">★★★★★</div>
-        <p class="temo-texte">"Jardinier sérieux, travail propre et soigné. Je recommande VERT 19 sans hésiter pour l'entretien de votre jardin."</p>
+        <p class="temo-texte">"Jardinier sérieux, travail propre et soigné. Je recommande VERT 19 sans hésiter."</p>
         <div class="temo-auteur">Client satisfait</div>
         <div class="temo-lieu">Corrèze</div>
       </div>
@@ -509,6 +567,17 @@
     <a href="https://instagram.com/vert19100" target="_blank">@vert19100</a>
   </div>
 </footer>
+
+<script>
+  function openMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
 
 </body>
 </html>
