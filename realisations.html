@@ -18,16 +18,12 @@
       display:flex; align-items:center; justify-content:space-between;
       padding:0 40px; height:64px; box-shadow:0 2px 12px rgba(0,0,0,0.25);
     }
-    .nav-logo {
-      color:#fff; font-size:1.5em; font-weight:900; letter-spacing:3px;
-      text-decoration:none; display:flex; align-items:center; gap:10px;
-    }
+    .nav-logo { color:#fff; font-size:1.5em; font-weight:900; letter-spacing:3px; text-decoration:none; display:flex; align-items:center; gap:10px; }
     .nav-logo-dot { width:10px; height:10px; background:var(--orange); border-radius:50%; }
     .nav-links { display:flex; align-items:center; gap:8px; list-style:none; }
     .nav-links a { color:rgba(255,255,255,0.82); text-decoration:none; font-size:0.88em; font-weight:500; padding:6px 14px; border-radius:4px; transition:all 0.2s; }
     .nav-links a:hover { color:#fff; background:rgba(255,255,255,0.1); }
     .nav-cta { background:var(--orange); color:#fff !important; font-weight:700 !important; padding:8px 20px !important; }
-    .nav-cta:hover { background:#c44f00 !important; }
 
     .hero { background:linear-gradient(150deg,#082618,#1A5C38); color:#fff; text-align:center; padding:60px 20px; }
     .hero h1 { font-size:2.4em; font-weight:900; margin-bottom:10px; }
@@ -35,30 +31,95 @@
 
     .page { max-width:1060px; margin:55px auto; padding:0 20px; }
 
-    /* GRILLE PHOTOS */
-    .grille { display:grid; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); gap:26px; margin-bottom:50px; }
+    /* ── GRILLE ── */
+    .grille { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; margin-bottom:50px; }
+
+    /* ── CARTE ── */
     .carte {
       background:#fff; border:1px solid #e8e8e8; border-radius:var(--radius);
       overflow:hidden; box-shadow:var(--shadow);
       transition:transform 0.2s, box-shadow 0.2s;
+      cursor:pointer;
     }
-    .carte:hover { transform:translateY(-4px); box-shadow:0 12px 35px rgba(0,0,0,0.12); }
-    .carte img {
-      width:100%; height:220px; object-fit:cover;
-      display:block; transition:transform 0.3s;
+    .carte:hover { transform:translateY(-4px); box-shadow:0 12px 35px rgba(0,0,0,0.14); }
+
+    .carte-img-wrap { position:relative; overflow:hidden; height:220px; }
+    .carte-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s; }
+    .carte:hover .carte-img-wrap img { transform:scale(1.06); }
+
+    /* Overlay loupe au survol */
+    .carte-overlay {
+      position:absolute; inset:0;
+      background:rgba(26,92,56,0.55);
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; transition:opacity 0.3s;
     }
-    .carte:hover img { transform:scale(1.03); }
-    .carte-overflow { overflow:hidden; }
+    .carte:hover .carte-overlay { opacity:1; }
+    .loupe {
+      width:54px; height:54px; border-radius:50%;
+      background:rgba(255,255,255,0.95);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.6em; box-shadow:0 4px 14px rgba(0,0,0,0.3);
+      transform:scale(0.8); transition:transform 0.3s;
+    }
+    .carte:hover .loupe { transform:scale(1); }
+
     .carte-info { padding:16px 18px; }
-    .carte-type {
-      display:inline-block; background:var(--orange); color:#fff;
-      font-size:0.73em; font-weight:700; padding:3px 12px;
-      border-radius:12px; margin-bottom:8px;
-    }
+    .carte-type { display:inline-block; background:var(--orange); color:#fff; font-size:0.73em; font-weight:700; padding:3px 12px; border-radius:12px; margin-bottom:8px; }
     .carte-info h3 { font-size:1em; font-weight:700; color:var(--vert); margin-bottom:4px; }
     .carte-info p { font-size:0.86em; color:var(--texte-clair); }
 
-    /* INSTAGRAM */
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display:none; position:fixed; inset:0; z-index:9999;
+      background:rgba(0,0,0,0.92);
+      align-items:center; justify-content:center;
+      padding:20px;
+      animation:fadeIn 0.2s ease;
+    }
+    .lightbox.active { display:flex; }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+    .lightbox-inner {
+      position:relative; max-width:90vw; max-height:90vh;
+      animation:zoomIn 0.25s ease;
+    }
+    @keyframes zoomIn { from { transform:scale(0.92); opacity:0; } to { transform:scale(1); opacity:1; } }
+
+    .lightbox-inner img {
+      max-width:90vw; max-height:85vh;
+      object-fit:contain; border-radius:4px;
+      display:block; box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    }
+    .lightbox-caption {
+      color:rgba(255,255,255,0.75); text-align:center;
+      padding:12px 0 0; font-size:0.88em;
+    }
+    .lightbox-close {
+      position:absolute; top:-16px; right:-16px;
+      width:40px; height:40px; border-radius:50%;
+      background:#fff; color:#1a1a1a; border:none;
+      font-size:1.3em; cursor:pointer; display:flex;
+      align-items:center; justify-content:center;
+      box-shadow:0 4px 14px rgba(0,0,0,0.4);
+      transition:transform 0.2s;
+    }
+    .lightbox-close:hover { transform:scale(1.1); }
+
+    /* Flèches navigation */
+    .lightbox-prev, .lightbox-next {
+      position:fixed; top:50%; transform:translateY(-50%);
+      background:rgba(255,255,255,0.12); color:#fff; border:none;
+      width:50px; height:50px; border-radius:50%;
+      font-size:1.4em; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:background 0.2s;
+    }
+    .lightbox-prev { left:20px; }
+    .lightbox-next { right:20px; }
+    .lightbox-prev:hover, .lightbox-next:hover { background:rgba(255,255,255,0.25); }
+
+    /* ── INSTAGRAM ── */
     .instagram-section {
       background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
       color:#fff; text-align:center; padding:44px 20px;
@@ -66,35 +127,17 @@
     }
     .instagram-section h2 { font-size:1.5em; margin-bottom:10px; }
     .instagram-section p { opacity:0.9; margin-bottom:22px; font-size:0.95em; }
-    .btn-instagram {
-      display:inline-block; background:#fff; color:#833ab4;
-      padding:12px 28px; font-size:1em; font-weight:700;
-      text-decoration:none; border-radius:4px;
-      transition:transform 0.2s;
-    }
+    .btn-instagram { display:inline-block; background:#fff; color:#833ab4; padding:12px 28px; font-size:1em; font-weight:700; text-decoration:none; border-radius:4px; transition:transform 0.2s; }
     .btn-instagram:hover { transform:translateY(-2px); }
 
-    /* CTA */
-    .cta-bas {
-      background:linear-gradient(135deg,#082618,#1A5C38);
-      color:#fff; text-align:center; padding:50px 20px;
-      border-radius:var(--radius); margin-bottom:50px;
-    }
+    /* ── CTA ── */
+    .cta-bas { background:linear-gradient(135deg,#082618,#1A5C38); color:#fff; text-align:center; padding:50px 20px; border-radius:var(--radius); margin-bottom:50px; }
     .cta-bas h2 { font-size:1.6em; margin-bottom:10px; }
     .cta-bas p { opacity:0.78; margin-bottom:24px; }
-    .btn-orange {
-      display:inline-block; background:var(--orange); color:#fff;
-      padding:15px 32px; font-size:1.05em; font-weight:700;
-      text-decoration:none; border-radius:4px;
-      transition:all 0.2s;
-    }
+    .btn-orange { display:inline-block; background:var(--orange); color:#fff; padding:15px 32px; font-size:1.05em; font-weight:700; text-decoration:none; border-radius:4px; transition:all 0.2s; }
     .btn-orange:hover { background:#c44f00; transform:translateY(-2px); }
 
-    footer {
-      background:#0a1f10; color:rgba(255,255,255,0.45);
-      padding:36px 20px; text-align:center;
-      font-size:0.82em; line-height:2;
-    }
+    footer { background:#0a1f10; color:rgba(255,255,255,0.45); padding:36px 20px; text-align:center; font-size:0.82em; line-height:2; }
     footer strong { color:rgba(255,255,255,0.8); font-size:1.05em; }
     .footer-links { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:12px; }
     .footer-links a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.9em; }
@@ -103,16 +146,15 @@
     @media (max-width:700px) {
       nav { padding:0 16px; }
       .nav-links { display:none; }
+      .lightbox-prev { left:8px; }
+      .lightbox-next { right:8px; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">
-    <div class="nav-logo-dot"></div>
-    VERT 19
-  </a>
+  <a href="index.html" class="nav-logo"><div class="nav-logo-dot"></div>VERT 19</a>
   <ul class="nav-links">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="prestations.html">Prestations</a></li>
@@ -124,16 +166,17 @@
 
 <div class="hero">
   <h1>Nos réalisations</h1>
-  <p>Photos de chantiers réalisés en Corrèze par VERT 19</p>
+  <p>Cliquez sur une photo pour l'agrandir</p>
 </div>
 
 <div class="page">
 
   <div class="grille">
 
-    <div class="carte">
-      <div class="carte-overflow">
+    <div class="carte" onclick="openLightbox(0)">
+      <div class="carte-img-wrap">
         <img src="haie1.jpg" alt="Taille de haie en Corrèze">
+        <div class="carte-overlay"><div class="loupe">🔍</div></div>
       </div>
       <div class="carte-info">
         <span class="carte-type">Taille de haies</span>
@@ -142,9 +185,10 @@
       </div>
     </div>
 
-    <div class="carte">
-      <div class="carte-overflow">
+    <div class="carte" onclick="openLightbox(1)">
+      <div class="carte-img-wrap">
         <img src="haie2.jpg" alt="Taille de haie en Corrèze">
+        <div class="carte-overlay"><div class="loupe">🔍</div></div>
       </div>
       <div class="carte-info">
         <span class="carte-type">Taille de haies</span>
@@ -153,9 +197,10 @@
       </div>
     </div>
 
-    <div class="carte">
-      <div class="carte-overflow">
+    <div class="carte" onclick="openLightbox(2)">
+      <div class="carte-img-wrap">
         <img src="haie3.jpg" alt="Taille de haie en Corrèze">
+        <div class="carte-overlay"><div class="loupe">🔍</div></div>
       </div>
       <div class="carte-info">
         <span class="carte-type">Taille de haies</span>
@@ -164,9 +209,10 @@
       </div>
     </div>
 
-    <div class="carte">
-      <div class="carte-overflow">
+    <div class="carte" onclick="openLightbox(3)">
+      <div class="carte-img-wrap">
         <img src="arbre1.jpg" alt="Taille d'arbre en Corrèze">
+        <div class="carte-overlay"><div class="loupe">🔍</div></div>
       </div>
       <div class="carte-info">
         <span class="carte-type">Taille d'arbres</span>
@@ -175,9 +221,10 @@
       </div>
     </div>
 
-    <div class="carte">
-      <div class="carte-overflow">
+    <div class="carte" onclick="openLightbox(4)">
+      <div class="carte-img-wrap">
         <img src="arbre2.jpg" alt="Taille d'arbre en Corrèze">
+        <div class="carte-overlay"><div class="loupe">🔍</div></div>
       </div>
       <div class="carte-info">
         <span class="carte-type">Taille d'arbres</span>
@@ -204,6 +251,17 @@
 
 </div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <button class="lightbox-prev" onclick="changePhoto(-1)">&#8249;</button>
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+  <button class="lightbox-next" onclick="changePhoto(1)">&#8250;</button>
+</div>
+
 <footer>
   <strong>Florent PORTEFAIX — VERT 19</strong><br>
   Entretien des espaces verts &amp; Jardinage · Corrèze
@@ -215,6 +273,54 @@
     <a href="https://instagram.com/vert19100" target="_blank">@vert19100</a>
   </div>
 </footer>
+
+<script>
+  const photos = [
+    { src: 'haie1.jpg',  caption: 'Taille de haies — Corrèze' },
+    { src: 'haie2.jpg',  caption: 'Taille de haies — Corrèze' },
+    { src: 'haie3.jpg',  caption: 'Taille de haies — Corrèze' },
+    { src: 'arbre1.jpg', caption: 'Taille d\'arbres — Corrèze' },
+    { src: 'arbre2.jpg', caption: 'Taille d\'arbres — Corrèze' },
+  ];
+
+  let current = 0;
+
+  function openLightbox(index) {
+    current = index;
+    document.getElementById('lightbox-img').src = photos[current].src;
+    document.getElementById('lightbox-caption').textContent = photos[current].caption;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOutside(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+
+  function changePhoto(dir) {
+    current = (current + dir + photos.length) % photos.length;
+    const img = document.getElementById('lightbox-img');
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = photos[current].src;
+      document.getElementById('lightbox-caption').textContent = photos[current].caption;
+      img.style.opacity = '1';
+    }, 150);
+  }
+
+  // Flèches clavier
+  document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'ArrowRight') changePhoto(1);
+    if (e.key === 'ArrowLeft') changePhoto(-1);
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
 
 </body>
 </html>
