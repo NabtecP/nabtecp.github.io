@@ -143,9 +143,69 @@
     .footer-links a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.9em; }
     .footer-links a:hover { color:rgba(255,255,255,0.8); }
 
+    
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--orange);
+      border-radius: 3px;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: #fff;
+      z-index: 998;
+      flex-direction: column;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 28px;
+      font-size: 1.05em;
+      font-weight: 700;
+      color: var(--vert);
+      text-decoration: none;
+      border-bottom: 1px solid #f0f0f0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .mobile-menu a::after { content: '›'; font-size: 1.4em; color: #ccc; }
+    .mobile-menu-cta { padding: 20px; margin-top: auto; }
+    .mobile-menu-cta a {
+      display: block !important;
+      background: var(--orange);
+      color: #fff !important;
+      text-align: center;
+      padding: 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.1em;
+      text-decoration: none;
+      border-bottom: none !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+    }
+    .mobile-menu-cta a::after { display: none !important; }
+    .mobile-menu { top: 64px; }
+
     @media (max-width:700px) {
       nav { padding:0 16px; }
       .nav-links { display:none; }
+      .hamburger { display:flex !important; }
       .lightbox-prev { left:8px; }
       .lightbox-next { right:8px; }
     }
@@ -154,6 +214,9 @@
 <body>
 
 <nav>
+  <button class="hamburger" id="hamburger" onclick="openMenu()">
+    <span></span><span></span><span></span>
+  </button>
   <a href="index.html" class="nav-logo"><div class="nav-logo-dot"></div>VERT 19</a>
   <ul class="nav-links">
     <li><a href="index.html">Accueil</a></li>
@@ -163,6 +226,16 @@
     <li><a href="tel:0641563230" class="nav-cta">📞 Devis gratuit</a></li>
   </ul>
 </nav>
+<!-- MENU MOBILE -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="prestations.html" onclick="closeMenu()">Prestations & Tarifs</a>
+  <a href="realisations.html" onclick="closeMenu()">Réalisations</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+  <div class="mobile-menu-cta">
+    <a href="tel:0641563230" onclick="closeMenu()">📞 06 41 56 32 30 — Devis gratuit</a>
+  </div>
+</div>
 
 <div class="hero">
   <h1>Nos réalisations</h1>
@@ -322,5 +395,15 @@
   });
 </script>
 
+<script>
+  function openMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
 </body>
 </html>
