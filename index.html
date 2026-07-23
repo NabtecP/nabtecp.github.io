@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="VERT 19 - Entretien des espaces verts et jardinage en Corrèze. Tonte, taille de haies, débroussaillage autour de Brive. Devis gratuit. Crédit d'impôt 50%.">
-  <title>VERT 19 — Jardinier en Corrèze</title>
+  <meta name="description" content="VERT 19 - Jardinier en Corrèze (19). Entretien des espaces verts, tonte de pelouse, taille de haies, débroussaillage autour de Brive-la-Gaillarde, Malemort, Varetz, Donzenac. Devis gratuit. Crédit d'impôt 50%. Déclaré SAP.">
+  <meta name="keywords" content="jardinier Brive, entretien jardin Corrèze, tonte pelouse Brive, taille haies Corrèze, débroussaillage Brive, espaces verts Corrèze, jardinier Malemort, jardinage Corrèze, entretien espaces verts 19, jardinier Donzenac, jardinier Varetz, jardinier Objat">
+  <meta name="author" content="Florent PORTEFAIX — VERT 19">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="VERT 19 — Jardinier en Corrèze · Brive et alentours">
+  <meta property="og:description" content="Entretien des espaces verts, tonte, taille de haies, débroussaillage autour de Brive. Devis gratuit. 50% crédit d'impôt.">
+  <meta property="og:url" content="https://vert19.fr">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://vert19.fr/">
+  <title>VERT 19 — Jardinier Corrèze · Entretien Espaces Verts Brive</title>
+
   <style>
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
@@ -12,7 +21,7 @@
     :root {
       --vert:#1A5C38; --vert2:#2D7A4F; --vert-pale:#EAF4EE;
       --orange:#E05C00; --orange-pale:#FFF3E0;
-      --gris:#F8F8F8; --gris2:#efefef; --texte:#2a2a2a; --texte-clair:#666;
+      --gris:#F8F8F8; --texte:#2a2a2a; --texte-clair:#666;
       --radius:6px; --shadow:0 4px 20px rgba(0,0,0,0.08);
     }
 
@@ -37,85 +46,116 @@
       border-radius:4px; transition:all 0.2s;
     }
     .nav-links a:hover { color:#fff; background:rgba(255,255,255,0.1); }
-    .nav-links .nav-cta {
-      background:var(--orange); color:#fff !important;
-      font-weight:700; padding:8px 20px;
-    }
+    .nav-links .nav-cta { background:var(--orange); color:#fff !important; font-weight:700; padding:8px 20px; }
     .nav-links .nav-cta:hover { background:#c44f00; }
-    .nav-mobile { display:none; }
 
-    /* ── HERO ── */
+    /* ── HERO AVEC PHOTO ── */
     .hero {
-      background:linear-gradient(150deg, #082618 0%, #0f3d22 40%, #1A5C38 100%);
-      color:#fff; min-height:88vh;
+      position:relative;
+      min-height:92vh;
       display:flex; align-items:center; justify-content:center;
-      padding:80px 40px; text-align:center; position:relative; overflow:hidden;
+      padding:80px 40px; text-align:center; overflow:hidden;
+      color:#fff;
     }
-    .hero::before {
-      content:''; position:absolute; inset:0;
-      background:radial-gradient(ellipse 80% 60% at 50% 40%, rgba(45,122,79,0.3) 0%, transparent 70%);
+
+    /* Photo de fond via Unsplash (jardin bien taillé, libre de droits) */
+    .hero-bg {
+      position:absolute; inset:0; z-index:0;
+      background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80');
+      background-size:cover; background-position:center;
+      transform:scale(1.05);
+      animation:zoomBg 12s ease-in-out infinite alternate;
     }
-    .hero-inner { position:relative; max-width:680px; }
+    @keyframes zoomBg {
+      from { transform:scale(1.05); }
+      to   { transform:scale(1.12); }
+    }
+
+    /* Overlay sombre pour lisibilité du texte */
+    .hero-overlay {
+      position:absolute; inset:0; z-index:1;
+      background:linear-gradient(150deg,
+        rgba(8,38,24,0.82) 0%,
+        rgba(15,61,34,0.72) 50%,
+        rgba(26,92,56,0.60) 100%);
+    }
+
+    .hero-inner { position:relative; z-index:2; max-width:700px; }
     .hero-eyebrow {
       display:inline-flex; align-items:center; gap:8px;
-      background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
-      color:rgba(255,255,255,0.88); padding:6px 18px; border-radius:20px;
-      font-size:0.8em; letter-spacing:0.5px; margin-bottom:28px;
+      background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25);
+      color:rgba(255,255,255,0.92); padding:7px 20px; border-radius:20px;
+      font-size:0.82em; letter-spacing:0.5px; margin-bottom:28px;
     }
     .hero h1 {
-      font-size:clamp(2.2em,5vw,3.8em); font-weight:900;
+      font-size:clamp(2.4em,5.5vw,4em); font-weight:900;
       line-height:1.1; letter-spacing:-1px; margin-bottom:20px;
+      text-shadow:0 2px 20px rgba(0,0,0,0.4);
     }
     .hero h1 em { color:#7ed4a0; font-style:normal; }
     .hero-sub {
-      font-size:1.1em; opacity:0.78; max-width:480px;
-      margin:0 auto 36px; line-height:1.7;
+      font-size:1.12em; opacity:0.88; max-width:520px;
+      margin:0 auto 36px; line-height:1.75;
+      text-shadow:0 1px 8px rgba(0,0,0,0.3);
     }
     .hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
     .btn { display:inline-block; padding:15px 32px; font-size:1em; font-weight:700; text-decoration:none; border-radius:var(--radius); transition:all 0.2s; }
     .btn-orange { background:var(--orange); color:#fff; }
-    .btn-orange:hover { background:#c44f00; transform:translateY(-2px); box-shadow:0 6px 20px rgba(224,92,0,0.4); }
-    .btn-outline { background:transparent; color:#fff; border:2px solid rgba(255,255,255,0.45); }
-    .btn-outline:hover { border-color:#fff; transform:translateY(-2px); }
+    .btn-orange:hover { background:#c44f00; transform:translateY(-2px); box-shadow:0 6px 20px rgba(224,92,0,0.5); }
+    .btn-outline { background:rgba(255,255,255,0.1); backdrop-filter:blur(4px); color:#fff; border:2px solid rgba(255,255,255,0.5); }
+    .btn-outline:hover { background:rgba(255,255,255,0.2); border-color:#fff; transform:translateY(-2px); }
+
     .hero-badge {
-      position:absolute; top:28px; right:28px;
+      position:absolute; top:28px; right:28px; z-index:3;
       background:var(--orange); color:#fff;
-      width:88px; height:88px; border-radius:50%;
+      width:92px; height:92px; border-radius:50%;
       display:flex; flex-direction:column; align-items:center; justify-content:center;
       font-weight:900; text-align:center; line-height:1.2;
-      box-shadow:0 6px 20px rgba(224,92,0,0.5);
+      box-shadow:0 6px 24px rgba(224,92,0,0.6);
+      animation:pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow:0 6px 24px rgba(224,92,0,0.6); }
+      50%      { box-shadow:0 6px 32px rgba(224,92,0,0.9); }
     }
     .hero-badge .big { font-size:1.9em; }
-    .hero-badge .small { font-size:0.6em; opacity:0.9; }
+    .hero-badge .small { font-size:0.6em; opacity:0.92; }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+      z-index:2; color:rgba(255,255,255,0.5); font-size:0.75em;
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+      animation:bounce 2s infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+    .scroll-hint::after { content:'↓'; font-size:1.2em; }
 
     /* ── CONFIANCE ── */
     .confiance {
       background:#fff; border-bottom:1px solid #e8e8e8;
-      display:flex; justify-content:center; flex-wrap:wrap; gap:0;
+      display:flex; justify-content:center; flex-wrap:wrap;
     }
     .confiance-item {
       display:flex; align-items:center; gap:10px;
-      padding:18px 28px; font-size:0.88em; font-weight:600; color:var(--vert);
+      padding:18px 26px; font-size:0.88em; font-weight:600; color:var(--vert);
       border-right:1px solid #e8e8e8;
     }
     .confiance-item:last-child { border-right:none; }
     .confiance-item .ic { font-size:1.3em; }
 
     /* ── CRÉDIT ── */
-    .credit-bande {
-      background:var(--vert); color:#fff;
-      padding:22px 20px; text-align:center;
-    }
-    .credit-bande p { font-size:0.95em; opacity:0.85; margin-bottom:8px; }
+    .credit-bande { background:var(--vert); color:#fff; padding:24px 20px; text-align:center; }
+    .credit-bande p { font-size:0.95em; opacity:0.85; margin-bottom:10px; }
     .credit-exemple {
       display:inline-block;
       background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
-      padding:9px 22px; border-radius:4px; font-weight:700; font-size:1em;
+      padding:10px 24px; border-radius:4px; font-weight:700; font-size:1.05em;
     }
     .urssaf-pill {
       display:inline-block; background:#1565C0; color:#fff;
-      font-size:0.68em; font-weight:700; padding:3px 12px; border-radius:12px;
-      letter-spacing:0.5px; margin-top:10px;
+      font-size:0.68em; font-weight:700; padding:4px 14px; border-radius:12px;
+      letter-spacing:0.5px; margin-top:12px;
     }
 
     /* ── SECTIONS ── */
@@ -126,7 +166,7 @@
     .section-header p { color:var(--texte-clair); font-size:1em; }
     .ligne-orange { width:48px; height:4px; background:var(--orange); margin:14px auto 0; border-radius:2px; }
 
-    /* ── CARTES PRESTATIONS ── */
+    /* ── CARTES ── */
     .grille-3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
     .carte {
       background:#fff; border:1px solid #e8e8e8; border-radius:var(--radius);
@@ -150,21 +190,20 @@
     .carte-link {
       display:block; text-align:center; padding:12px;
       background:var(--vert-pale); color:var(--vert);
-      font-weight:700; font-size:0.85em; text-decoration:none;
-      transition:background 0.2s;
+      font-weight:700; font-size:0.85em; text-decoration:none; transition:background 0.2s;
     }
     .carte-link:hover { background:#d0eada; }
 
-    /* ── BANDEAU ── */
-    .bandeau { background:var(--vert2); color:#fff; text-align:center; padding:16px 20px; font-weight:700; }
+    /* ── BANDEAUX ── */
+    .bandeau { background:var(--vert2); color:#fff; text-align:center; padding:16px 20px; font-weight:700; border-radius:var(--radius); margin-top:24px; }
     .bandeau-bricolage {
-      max-width:1060px; margin:24px auto 0;
+      max-width:1060px; margin:20px auto 0;
       background:var(--orange-pale); border:1px solid #ffc89a;
       border-left:5px solid var(--orange); border-radius:var(--radius);
       padding:16px 24px; font-size:0.93em;
     }
 
-    /* ── TEMOIGNAGES ── */
+    /* ── TÉMOIGNAGES ── */
     .section-temoignages { background:var(--gris); }
     .temo-grille { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
     .temo {
@@ -184,10 +223,15 @@
     /* ── ZONE ── */
     .zone-bande {
       background:var(--vert-pale); border-top:2px solid #c8e6d4; border-bottom:2px solid #c8e6d4;
-      padding:22px 20px; text-align:center;
+      padding:24px 20px; text-align:center;
     }
-    .zone-bande strong { display:block; color:var(--vert); font-size:1em; margin-bottom:6px; }
-    .zone-bande p { color:var(--texte-clair); font-size:0.9em; }
+    .zone-bande strong { display:block; color:var(--vert); font-size:1.05em; margin-bottom:8px; }
+    .zone-bande p { color:var(--texte-clair); font-size:0.92em; }
+    .zone-tags { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:12px; }
+    .zone-tag {
+      background:#fff; border:1px solid #c8e6d4; color:var(--vert);
+      padding:4px 14px; border-radius:14px; font-size:0.82em; font-weight:600;
+    }
 
     /* ── SAP ── */
     .sap-inner {
@@ -207,8 +251,7 @@
     .btn-outline-white {
       display:inline-block; background:transparent; color:#fff;
       padding:15px 32px; font-size:1em; font-weight:700; text-decoration:none;
-      border:2px solid rgba(255,255,255,0.45); border-radius:var(--radius);
-      transition:all 0.2s;
+      border:2px solid rgba(255,255,255,0.45); border-radius:var(--radius); transition:all 0.2s;
     }
     .btn-outline-white:hover { border-color:#fff; }
 
@@ -226,14 +269,35 @@
     @media (max-width:700px) {
       nav { padding:0 16px; }
       .nav-links { display:none; }
-      .nav-mobile { display:block; }
-      .hero { min-height:auto; padding:70px 20px 50px; }
-      .hero-badge { width:70px; height:70px; top:16px; right:16px; }
+      .hero { min-height:auto; padding:80px 20px 60px; }
+      .hero-badge { width:72px; height:72px; top:16px; right:16px; }
       .hero-badge .big { font-size:1.5em; }
       .confiance { justify-content:flex-start; overflow-x:auto; flex-wrap:nowrap; }
       .confiance-item { white-space:nowrap; }
     }
   </style>
+
+  <!-- Données structurées JSON-LD pour Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "VERT 19",
+    "description": "Entretien des espaces verts en Corrèze — tonte de pelouse, taille de haies, débroussaillage, élagage autour de Brive-la-Gaillarde.",
+    "url": "https://vert19.fr",
+    "telephone": "0641563230",
+    "email": "vert19100@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Corrèze",
+      "addressCountry": "FR"
+    },
+    "areaServed": ["Brive-la-Gaillarde","Malemort","Varetz","Donzenac","Objat","Ussac","Saint-Viance"],
+    "priceRange": "€",
+    "openingHours": ["Mo-Fr 08:00-18:00", "Sa 08:00-12:00"],
+    "sameAs": ["https://instagram.com/vert19100"]
+  }
+  </script>
 </head>
 <body>
 
@@ -254,19 +318,22 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-badge">
     <span class="big">50%</span>
     <span class="small">CRÉDIT<br>D'IMPÔTS</span>
   </div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">📍 Corrèze · Artisan local déclaré SAP</div>
+    <div class="hero-eyebrow">📍 Jardinier en Corrèze · Déclaré SAP</div>
     <h1>Votre jardin,<br><em>entre de bonnes mains</em></h1>
-    <p class="hero-sub">Tonte, taille de haies, débroussaillage et petits travaux — autour de Brive et en Corrèze. Devis gratuit, intervention rapide.</p>
+    <p class="hero-sub">Entretien des espaces verts, tonte de pelouse, taille de haies et débroussaillage — Brive-la-Gaillarde et Corrèze. Devis gratuit, intervention rapide.</p>
     <div class="hero-btns">
       <a href="tel:0641563230" class="btn btn-orange">📞 06 41 56 32 30</a>
       <a href="prestations.html" class="btn btn-outline">Voir nos tarifs →</a>
     </div>
   </div>
+  <div class="scroll-hint">Découvrir</div>
 </section>
 
 <!-- CONFIANCE -->
@@ -280,7 +347,7 @@
 
 <!-- CRÉDIT IMPÔT -->
 <div class="credit-bande">
-  <p>Bénéficiez du crédit d'impôt à 50 % sur toutes vos prestations d'entretien</p>
+  <p>Bénéficiez du crédit d'impôt à 50 % sur toutes vos prestations d'entretien de jardin en Corrèze</p>
   <div class="credit-exemple">💡 Une prestation à 100 € ne vous coûte que 50 € après crédit d'impôt</div>
   <div><span class="urssaf-pill">AVANCE IMMÉDIATE URSSAF DISPONIBLE</span></div>
 </div>
@@ -289,14 +356,14 @@
 <section class="section" id="prestations">
   <div class="section-inner">
     <div class="section-header">
-      <h2>Nos prestations</h2>
-      <p>Tarifs clairs, à partir de... — devis gratuit sur place</p>
+      <h2>Entretien des espaces verts en Corrèze</h2>
+      <p>Jardinier professionnel à Brive et alentours — tarifs clairs, à partir de...</p>
       <div class="ligne-orange"></div>
     </div>
     <div class="grille-3">
 
       <div class="carte">
-        <div class="carte-header">🌿 Haies</div>
+        <div class="carte-header">🌿 Taille de haies</div>
         <div class="carte-body">
           <div class="tarif-row"><span class="label">Moins d'1,5 m</span><span class="prix">à partir de 5 € / ml</span></div>
           <div class="tarif-row"><span class="label">1,5 m à 3 m</span><span class="prix">à partir de 8 € / ml</span></div>
@@ -306,7 +373,7 @@
       </div>
 
       <div class="carte">
-        <div class="carte-header">🌾 Débroussaillage</div>
+        <div class="carte-header">🌾 Débroussaillage Corrèze</div>
         <div class="carte-body">
           <div class="tarif-row"><span class="label">Pente, roncier, arbustes</span><span class="prix">à partir de 0,90 € / m²</span></div>
           <div class="tarif-row"><span class="label">Herbe, fougère</span><span class="prix">à partir de 0,50 € / m²</span></div>
@@ -316,7 +383,7 @@
       </div>
 
       <div class="carte">
-        <div class="carte-header">✂️ Tonte</div>
+        <div class="carte-header">✂️ Tonte de pelouse</div>
         <div class="carte-body">
           <div class="tarif-row"><span class="label">Pelouse &lt; 250 m²</span><span class="prix">à partir de 0,40 € / m²</span></div>
           <div class="tarif-row"><span class="label">250 m² – 1 000 m²</span><span class="prix">à partir de 0,30 € / m²</span></div>
@@ -326,10 +393,10 @@
       </div>
 
       <div class="carte">
-        <div class="carte-header">🌳 Taille d'arbres</div>
+        <div class="carte-header">🌳 Élagage et taille d'arbres</div>
         <div class="carte-body">
-          <div class="tarif-row"><span class="label">0 à 5 m</span><span class="prix">à partir de 100 €</span></div>
-          <div class="tarif-row"><span class="label">5 à 12 m</span><span class="prix">à partir de 200 €</span></div>
+          <div class="tarif-row"><span class="label">Arbre de 0 à 5 m</span><span class="prix">à partir de 100 €</span></div>
+          <div class="tarif-row"><span class="label">Arbre de 5 à 12 m</span><span class="prix">à partir de 200 €</span></div>
           <div class="tarif-row"><span class="label">Au-delà</span><span class="prix">Sur devis</span></div>
         </div>
         <a href="prestations.html" class="carte-link">En savoir plus →</a>
@@ -355,9 +422,7 @@
 
     </div>
 
-    <div class="bandeau" style="margin-top:24px; border-radius:var(--radius);">
-      🍂 Ramassage de feuilles — Sur devis selon surface
-    </div>
+    <div class="bandeau">🍂 Ramassage de feuilles en Corrèze — Sur devis selon surface</div>
 
     <div class="bandeau-bricolage">
       🔧 <strong>Petits travaux à domicile</strong> — Montage de meubles · pose d'étagères · fixations murales · réparations courantes · pose de gaine enterrée &nbsp;·&nbsp; <em>Sur devis · éligible crédit d'impôt SAP</em>
@@ -370,8 +435,8 @@
 <section class="section section-temoignages" id="temoignages">
   <div class="section-inner">
     <div class="section-header">
-      <h2>Ce que disent nos clients</h2>
-      <p>Des particuliers satisfaits en Corrèze</p>
+      <h2>Avis de nos clients en Corrèze</h2>
+      <p>Des particuliers satisfaits autour de Brive</p>
       <div class="ligne-orange"></div>
     </div>
     <div class="temo-grille">
@@ -389,9 +454,9 @@
       </div>
       <div class="temo">
         <div class="etoiles">★★★★★</div>
-        <p class="temo-texte">""</p>
-        <div class="temo-auteur"> </div>
-        <div class="temo-lieu">Varetz</div>
+        <p class="temo-texte">"Jardinier sérieux, travail propre et soigné. Je recommande VERT 19 sans hésiter pour l'entretien de votre jardin."</p>
+        <div class="temo-auteur">Client satisfait</div>
+        <div class="temo-lieu">Corrèze</div>
       </div>
     </div>
   </div>
@@ -399,15 +464,25 @@
 
 <!-- ZONE -->
 <div class="zone-bande" id="zone">
-  <strong>📍 Zone d'intervention</strong>
-  <p>Brive-la-Gaillarde · Malemort · Varetz · Donzenac · Objat · Ussac · Saint-Viance · et alentours en Corrèze</p>
+  <strong>📍 Jardinier en Corrèze — Zone d'intervention</strong>
+  <p>VERT 19 intervient pour l'entretien de vos espaces verts autour de Brive-la-Gaillarde</p>
+  <div class="zone-tags">
+    <span class="zone-tag">Brive-la-Gaillarde</span>
+    <span class="zone-tag">Malemort</span>
+    <span class="zone-tag">Varetz</span>
+    <span class="zone-tag">Donzenac</span>
+    <span class="zone-tag">Objat</span>
+    <span class="zone-tag">Ussac</span>
+    <span class="zone-tag">Saint-Viance</span>
+    <span class="zone-tag">et alentours</span>
+  </div>
 </div>
 
 <!-- SAP -->
 <section class="section" style="padding:40px 20px;">
   <div class="section-inner">
     <div class="sap-inner">
-      <strong>VERT 19</strong> est déclaré prestataire de services à la personne (SAP n° SAP989041074 · SIRET 989 041 074 00018). Vous bénéficiez de <strong>50 % de crédit d'impôt</strong> sur les prestations selon l'article 199 sexdecies du CGI. Avec l'<strong>Avance immédiate Urssaf</strong>, le crédit d'impôt est déduit directement de votre facture — sans avance de trésorerie de votre part.
+      <strong>VERT 19</strong> est déclaré prestataire de services à la personne (SAP n° SAP989041074 · SIRET 989 041 074 00018). Vous bénéficiez de <strong>50 % de crédit d'impôt</strong> sur les prestations d'entretien de jardin et d'espaces verts selon l'article 199 sexdecies du CGI. Avec l'<strong>Avance immédiate Urssaf</strong>, le crédit d'impôt est déduit directement de votre facture — sans avance de trésorerie de votre part.
     </div>
   </div>
 </section>
@@ -415,7 +490,7 @@
 <!-- CTA -->
 <section class="cta-section">
   <h2>Devis gratuit — sans engagement</h2>
-  <p>Je me déplace en Corrèze · Réponse sous 24h · Intervention rapide</p>
+  <p>Jardinier en Corrèze · Brive et alentours · Réponse sous 24h · Intervention rapide</p>
   <div class="cta-btns">
     <a href="tel:0641563230" class="btn btn-orange">📞 06 41 56 32 30</a>
     <a href="mailto:vert19100@gmail.com" class="btn-outline-white">✉️ vert19100@gmail.com</a>
@@ -425,7 +500,7 @@
 <!-- FOOTER -->
 <footer>
   <strong>Florent PORTEFAIX — VERT 19</strong><br>
-  Entretien des espaces verts &amp; Jardinage · Corrèze
+  Jardinier en Corrèze · Entretien des espaces verts &amp; Jardinage · Brive-la-Gaillarde
   <div class="footer-links">
     <a href="index.html">Accueil</a>
     <a href="prestations.html">Prestations</a>
